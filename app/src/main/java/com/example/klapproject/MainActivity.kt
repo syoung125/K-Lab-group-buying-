@@ -37,6 +37,5 @@ class MainActivity : AppCompatActivity() {
                 content.currentItem = tab.position}
         })
 
-        Log.e("test","꾸에에엑")
     }
 }
