@@ -13,10 +13,10 @@ class MyAdapter(fm: FragmentManager,val num:Int): FragmentPagerAdapter(fm){
 
     override fun getItem(position: Int): Fragment? {
          when(position){
-            0-> return Fragment1()
-            1-> return Fragment2()
-             2->return Fragment1()
-             3->return Fragment2()
+             0->return Fragment1()
+             1->return Fragment2()
+             2->return Fragment3()
+             3->return Fragment4()
         }
         return null
     }

@@ -9,6 +9,6 @@ import android.view.ViewGroup
 class Fragment4 : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_fragment1, container, false)
+        return inflater.inflate(R.layout.fragment_fragment4, container, false)
     }
 }

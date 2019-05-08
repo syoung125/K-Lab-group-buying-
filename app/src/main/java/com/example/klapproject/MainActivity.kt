@@ -18,10 +18,10 @@ class MainActivity : AppCompatActivity() {
 
     fun init(){
         tabLayer = findViewById(R.id.layout_tab)
-        tabLayer?.addTab(tabLayer!!.newTab().setText("Tab 1"))
-        tabLayer?.addTab(tabLayer!!.newTab().setText("Tab 2"))
-        tabLayer?.addTab(tabLayer!!.newTab().setText("Tab 3"))
-        tabLayer?.addTab(tabLayer!!.newTab().setText("Tab 4"))
+        tabLayer?.addTab(tabLayer!!.newTab().setText("홈"))
+        tabLayer?.addTab(tabLayer!!.newTab().setText("글쓰기"))
+        tabLayer?.addTab(tabLayer!!.newTab().setText("채팅"))
+        tabLayer?.addTab(tabLayer!!.newTab().setText("마이 페이지"))
         // 탭 4개 추가
 
         val adapter = MyAdapter(supportFragmentManager, tabLayer!!.tabCount)
