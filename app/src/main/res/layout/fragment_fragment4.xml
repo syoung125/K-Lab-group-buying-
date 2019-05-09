@@ -6,10 +6,250 @@
              tools:context=".Fragment4">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Fragment 4"/>
-
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="match_parent">
+        <!-- 전체 레이아웃 -->
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="vertical"
+                      android:layout_height="match_parent">
+            <!--마이페이지 텍스트와 알림버튼-->
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_marginTop="20dp"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal">
+                <TextView android:layout_width="0dp"
+                          android:layout_weight="4"
+                          android:text="마이페이지"
+                          android:textColor="#ffc900"
+                          android:gravity="left|center"
+                          android:layout_marginLeft="20dp"
+                          android:textSize="25sp"
+                          android:layout_height="match_parent"/>
+                <ToggleButton android:layout_width="0dp"
+                              android:id="@+id/product_notice"
+                              android:layout_marginRight="20dp"
+                              android:layout_weight="1"
+                              android:layout_height="match_parent"/>
+            </LinearLayout>
+            <!-- 프로필 사진과 사용자 닉네임, 거래횟수-->
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="horizontal"
+                          android:layout_marginTop="10dp"
+                          android:layout_height="wrap_content">
+                <ImageView android:layout_width="0dp"
+                           android:layout_marginLeft="40dp"
+                           android:layout_weight="1"
+                           android:src="@mipmap/ic_launcher"
+                           android:id="@+id/profile_img"
+                           android:layout_height="match_parent"/>
+                <!--사용자 닉네임, 거래횟수(등급)-->
+                <LinearLayout android:layout_width="0dp"
+                              android:layout_weight="5"
+                              android:layout_height="match_parent"
+                              android:orientation="vertical">
+                    <TextView android:layout_width="match_parent"
+                              android:text="사용자 닉네임"
+                              android:gravity="left|center"
+                              android:paddingLeft="10dp"
+                              android:id="@+id/user_name"
+                              android:layout_weight="1"
+                              android:layout_height="0dp"
+                              android:textStyle="bold"
+                              android:textSize="18sp"/>
+                    <TextView android:layout_width="match_parent"
+                              android:text="거래횟수 : 13번 (GOLD)"
+                              android:gravity="left|center"
+                              android:paddingLeft="10dp"
+                              android:id="@+id/deal_count"
+                              android:layout_weight="1"
+                              android:layout_height="0dp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <!--리뷰보기 텍스트와 더보기 버튼-->
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_marginTop="20dp"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal">
+                <TextView android:layout_width="0dp"
+                          android:layout_weight="4"
+                          android:text="리뷰보기"
+                          android:textColor="#ffc900"
+                          android:gravity="left|center"
+                          android:layout_marginLeft="20dp"
+                          android:textSize="25sp"
+                          android:layout_height="match_parent"/>
+                <Button android:layout_width="0dp"
+                        android:text="더보기"
+                        android:id="@+id/review_more_btn"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+            </LinearLayout>
+            <!--리뷰 내용과 리뷰 수-->
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="vertical"
+                          android:layout_marginTop="10dp"
+                          android:paddingLeft="40dp"
+                          android:layout_height="wrap_content">
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="horizontal"
+                              android:layout_height="wrap_content">
+                    <TextView android:layout_width="0dp"
+                              android:layout_weight="2"
+                              android:text="1. 시간약속을 잘 지켜요"
+                              android:id="@+id/review1"
+                              android:layout_height="match_parent"/>
+                    <TextView android:layout_width="0dp"
+                              android:layout_weight="1"
+                              android:text="14명"
+                              android:textStyle="bold"
+                              android:id="@+id/review1_count"
+                              android:layout_height="match_parent"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="horizontal"
+                              android:layout_height="wrap_content">
+                    <TextView android:layout_width="0dp"
+                              android:layout_weight="2"
+                              android:text="2. 친절하고 매너가 좋아요"
+                              android:id="@+id/review2"
+                              android:layout_height="match_parent"/>
+                    <TextView android:layout_width="0dp"
+                              android:layout_weight="1"
+                              android:text="10명"
+                              android:textStyle="bold"
+                              android:id="@+id/review2_count"
+                              android:layout_height="match_parent"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:orientation="horizontal"
+                              android:layout_height="wrap_content">
+                    <TextView android:layout_width="0dp"
+                              android:layout_weight="2"
+                              android:text="3. 응답이 빨라요"
+                              android:id="@+id/review3"
+                              android:layout_height="match_parent"/>
+                    <TextView android:layout_width="0dp"
+                              android:layout_weight="1"
+                              android:text="8명"
+                              android:textStyle="bold"
+                              android:id="@+id/review3_count"
+                              android:layout_height="match_parent"/>
+                </LinearLayout>
+            </LinearLayout>
+            <!--이전 거래 목록 텍스트와 공개/비공개 버튼-->
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_marginTop="20dp"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal">
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_marginTop="20dp"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">
+                    <TextView android:layout_width="0dp"
+                              android:layout_weight="4"
+                              android:textColor="#ffc900"
+                              android:text="이전 거래 목록"
+                              android:gravity="left|center"
+                              android:layout_marginLeft="20dp"
+                              android:textSize="25sp"
+                              android:layout_height="match_parent"/>
+                    <ToggleButton android:layout_width="0dp"
+                                  android:layout_marginRight="20dp"
+                                  android:layout_weight="1"
+                                  android:id="@+id/private_btn"
+                                  android:layout_height="match_parent"
+                                  android:textOff="비공개"
+                                  android:textOn="공개"/>
+                </LinearLayout>
+            </LinearLayout>
+            <GridLayout android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:columnCount="2"
+                        android:layout_height="wrap_content">
+                <LinearLayout android:layout_width="0dp"
+                              android:paddingTop="15dp"
+                              android:paddingBottom="15dp"
+                              android:layout_marginTop="10dp"
+                              android:layout_marginBottom="10dp"
+                              android:layout_marginLeft="30dp"
+                              android:layout_marginRight="30dp"
+                              android:background="@drawable/round_border"
+                              android:layout_columnWeight="1"
+                              android:orientation="vertical"
+                              android:layout_height="wrap_content">
+                    <ImageView android:layout_width="match_parent"
+                               android:src="@mipmap/ic_launcher"
+                               android:layout_height="wrap_content"/>
+                    <TextView android:layout_width="match_parent"
+                              android:gravity="center"
+                              android:text="당근"
+                              android:paddingTop="10dp"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp"
+                              android:paddingTop="15dp"
+                              android:paddingBottom="15dp"
+                              android:layout_marginTop="10dp"
+                              android:layout_marginBottom="10dp"
+                              android:layout_marginLeft="30dp"
+                              android:layout_marginRight="30dp"
+                              android:background="@drawable/round_border"
+                              android:layout_columnWeight="1"
+                              android:orientation="vertical"
+                              android:layout_height="wrap_content">
+                    <ImageView android:layout_width="match_parent"
+                               android:src="@mipmap/ic_launcher"
+                               android:layout_height="wrap_content"/>
+                    <TextView android:layout_width="match_parent"
+                              android:gravity="center"
+                              android:text="섬유유연제"
+                              android:paddingTop="10dp"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp"
+                              android:paddingTop="15dp"
+                              android:paddingBottom="15dp"
+                              android:layout_marginTop="10dp"
+                              android:layout_marginBottom="10dp"
+                              android:layout_marginLeft="30dp"
+                              android:layout_marginRight="30dp"
+                              android:background="@drawable/round_border"
+                              android:layout_columnWeight="1"
+                              android:orientation="vertical"
+                              android:layout_height="wrap_content">
+                    <ImageView android:layout_width="match_parent"
+                               android:src="@mipmap/ic_launcher"
+                               android:layout_height="wrap_content"/>
+                    <TextView android:layout_width="match_parent"
+                              android:gravity="center"
+                              android:text="휴지"
+                              android:paddingTop="10dp"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp"
+                              android:paddingTop="15dp"
+                              android:paddingBottom="15dp"
+                              android:layout_marginTop="10dp"
+                              android:layout_marginBottom="10dp"
+                              android:layout_marginLeft="30dp"
+                              android:layout_marginRight="30dp"
+                              android:background="@drawable/round_border"
+                              android:layout_columnWeight="1"
+                              android:orientation="vertical"
+                              android:layout_height="wrap_content">
+                    <ImageView android:layout_width="match_parent"
+                               android:src="@mipmap/ic_launcher"
+                               android:layout_height="wrap_content"/>
+                    <TextView android:layout_width="match_parent"
+                              android:gravity="center"
+                              android:text="사과"
+                              android:paddingTop="10dp"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>
