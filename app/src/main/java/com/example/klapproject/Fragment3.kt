@@ -7,17 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.ListView
 import kotlinx.android.synthetic.main.fragment_fragment3.*
 
 class Fragment3 : Fragment() {
 
     lateinit var chatList:ArrayList<ChatUser>
     lateinit var adapter:ChatAdapter
+    lateinit var listView: ListView
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_fragment3, container, false)
+        listView = view.findViewById(R.id.listView) as ListView
         init()
-        return inflater.inflate(R.layout.fragment_fragment3, container, false)
+        return view
     }
 
     fun init(){
