@@ -1,19 +1,17 @@
 package com.example.klapproject
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ImageView
 import android.widget.ListView
-import kotlinx.android.synthetic.main.fragment_fragment3.*
 
 class Fragment3 : Fragment() {
 
     lateinit var chatList:ArrayList<ChatUser>
-    lateinit var adapter:ChatAdapter
+    lateinit var adapter:ChatRoomAdapter
     lateinit var listView: ListView
 
 
@@ -26,8 +24,24 @@ class Fragment3 : Fragment() {
 
     fun init(){
         chatList = ArrayList<ChatUser>()
-        chatList.add(ChatUser("seoyoung", "안녕하세요", resources.getIdentifier("presence_online", "drawable", activity?.packageName), resources.getIdentifier("sym_def_app_icon", "drawable", activity?.packageName)))
-        adapter = ChatAdapter(activity!!.applicationContext, R.layout.room_row, chatList)
+        chatList.add(0, ChatUser("seoyoung", "안녕하세요", resources.getIdentifier("chat_user", "drawable", activity?.packageName), resources.getIdentifier("pencil", "drawable", activity?.packageName)))
+        chatList.add(0, ChatUser("seohee", "판매완료됬나요?", resources.getIdentifier("chat_user", "drawable", activity?.packageName), resources.getIdentifier("pencil", "drawable", activity?.packageName)))
+        chatList.add(0, ChatUser("hyunsoo", "물건 사고싶습니다", resources.getIdentifier("chat_user", "drawable", activity?.packageName), resources.getIdentifier("pencil", "drawable", activity?.packageName)))
+        chatList.add(0, ChatUser("hyunjung", "불떡 같이 먹어요", resources.getIdentifier("chat_user", "drawable", activity?.packageName), resources.getIdentifier("pencil", "drawable", activity?.packageName)))
+        chatList.add(0, ChatUser("seungyeon", "문의드려요", resources.getIdentifier("chat_user", "drawable", activity?.packageName), resources.getIdentifier("pencil", "drawable", activity?.packageName)))
+        chatList.add(0, ChatUser("hyojin", "부리또 배달 같이해요", resources.getIdentifier("chat_user", "drawable", activity?.packageName), resources.getIdentifier("pencil", "drawable", activity?.packageName)))
+        adapter = ChatRoomAdapter(activity!!.applicationContext, R.layout.room_row, chatList)
         listView.adapter = adapter
+        addListener()
     }
+
+    fun addListener(){
+        listView.setOnItemClickListener{ parent, view, position, it ->
+            val w = parent.getItemAtPosition(position) as ChatUser
+            val i = Intent(parent.context, ChatActivity::class.java)
+            i.putExtra("userId", w.id)
+            startActivity(i)
+        }
+    }
+
 }
