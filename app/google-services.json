@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "161607586255",
+    "firebase_url": "https://k-lab-group-project.firebaseio.com",
+    "project_id": "k-lab-group-project",
+    "storage_bucket": "k-lab-group-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:161607586255:android:ebe4ac0c0fa8e763",
+        "android_client_info": {
+          "package_name": "com.example.klapproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "161607586255-ji26nojr3bo0p7hblh6t24lq86fd50dn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnUTi--v9fCdUKJ-MbScO14DCh6vKwArc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "161607586255-ji26nojr3bo0p7hblh6t24lq86fd50dn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
