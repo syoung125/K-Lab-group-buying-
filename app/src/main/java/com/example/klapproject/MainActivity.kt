@@ -1,5 +1,6 @@
 package com.example.klapproject
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
@@ -33,8 +34,13 @@ class MainActivity : AppCompatActivity() {
             override fun onTabReselected(p0: TabLayout.Tab?) {}
             override fun onTabUnselected(p0: TabLayout.Tab?) {}
             override fun onTabSelected(tab: TabLayout.Tab) {
-                Log.e("test",tab.position.toString() +" "+content.currentItem.toString())
-                content.currentItem = tab.position}
+                Log.e("test", tab.position.toString() + " " + content.currentItem.toString())
+                if(tab.position==1){
+                    var next = Intent(applicationContext, WritingForm::class.java)
+                    startActivity(next)
+                }
+                content.currentItem = tab.position
+            }
         })
 
     }
