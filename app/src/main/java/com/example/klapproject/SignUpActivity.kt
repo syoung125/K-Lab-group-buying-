@@ -7,12 +7,21 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : Activity() {
 
+//    var firebaseAuth: FirebaseAuth? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        loginbutton.setOnClickListener {
+        joinbutton.setOnClickListener {
             var longinintent = Intent(this, LoginActivity::class.java)
             startActivity(longinintent)
         }
+        init()
     }
+    fun init(){
+        su_sendmail.setOnClickListener {
+
+        }
+    }
+
 }
