@@ -10,12 +10,15 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".CategoryActivity"
+                  android:windowSoftInputMode="adjustNothing"
         android:theme="@style/Theme.Design.Light.NoActionBar">
         </activity>
         <activity android:name=".WritingForm"
+                  android:windowSoftInputMode="adjustNothing"
                   android:theme="@style/Theme.Design.Light.NoActionBar">
         </activity>
         <activity android:name=".SignUpActivity"
+                  android:windowSoftInputMode="adjustNothing"
                   android:theme="@style/Theme.Design.Light.NoActionBar">
         </activity>
         <activity android:name=".LoginActivity"
