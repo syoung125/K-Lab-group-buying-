@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Fragment1"
         android:focusable="true"
         android:focusableInTouchMode="true">
-    <LinearLayout
-            android:layout_width="match_parent" android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            android:orientation="vertical">
-        <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        <GridLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:rowCount="2" android:columnCount="3"
-                android:layout_gravity="center">
-            <ImageButton android:src="@mipmap/ic_launcher"
-                         android:layout_marginLeft="15dp"
-            />
-            <ImageButton android:src="@mipmap/ic_launcher"
-                         android:layout_marginLeft="15dp"
-            />
-            <ImageButton android:src="@mipmap/ic_launcher"
-                         android:layout_marginLeft="15dp"
-                         android:layout_marginRight="15dp"
-            />
+    <GridLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:rowCount="3" android:columnCount="2"
+            android:layout_gravity="center" android:id="@+id/gridLayout" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+    >
+        <ImageButton
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imgButton1"/>
+        <ImageButton
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imgButton2" />
+        <ImageButton
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imgButton3" />
 
-            <ImageButton android:src="@mipmap/ic_launcher"
-                         android:layout_marginLeft="15dp"
-            />
-            <ImageButton android:src="@mipmap/ic_launcher"
-                         android:layout_marginLeft="15dp"
-            />
-            <ImageButton android:src="@mipmap/ic_launcher"
-                         android:layout_marginLeft="15dp"
-                         android:layout_marginRight="15dp"
-            />
-        </GridLayout>
-        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                  android:text="최근 게시글"
-                  android:textSize="20sp"
-                  android:textColor="#40E0D1"
-        />
-    </LinearLayout>
+        <ImageButton
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imgButton4" />
+        <ImageButton
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imgButton5"/>
+        <ImageButton
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/imgButton6"/>
+    </GridLayout>
 
 </android.support.constraint.ConstraintLayout>
