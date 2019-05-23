@@ -11,8 +11,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         signin_button.setOnClickListener {
-            var gohomeIntent = Intent(this, MainActivity::class.java)
-            startActivity(gohomeIntent)
+                var gohomeIntent = Intent(this, MainActivity::class.java)
+                startActivity(gohomeIntent)
         }
         signup_button.setOnClickListener {
             var signupIntent = Intent(this, SignUpActivity::class.java)

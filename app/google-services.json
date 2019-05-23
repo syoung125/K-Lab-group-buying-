@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "161607586255-86hr7hv4ep6hlul09frdgmvms1arbecb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.klapproject",
+            "certificate_hash": "2ef88dcd6c9aa9c50b5d093d54e57f50de188b59"
+          }
+        },
+        {
           "client_id": "161607586255-ji26nojr3bo0p7hblh6t24lq86fd50dn.apps.googleusercontent.com",
           "client_type": 3
         }
