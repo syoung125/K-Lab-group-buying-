@@ -1,5 +1,6 @@
 package com.example.klapproject
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +17,11 @@ import com.google.firebase.database.ChildEventListener
 
 class LoginActivity : AppCompatActivity() {
     var flag = 0
+    override fun onBackPressed() { //super.onBackPressed()
+        val i = Intent()
+        setResult(Activity.RESULT_CANCELED,i)
+        finish()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
             val myRef = database.getReference("user")
             myRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var check = 0
                     for (i in dataSnapshot.children) {
                         val index = i.key.toString()
                         val id = dataSnapshot.child(index).child("id").value.toString()
@@ -32,9 +39,13 @@ class LoginActivity : AppCompatActivity() {
 
                         if (id == editText_id.text.toString() && pw == editText_pw.text.toString()) {
                             flag = 1
-                            var gohomeIntent = Intent()
+                            val i = Intent()
+                            i.putExtra("user", check)
+                            i.putExtra("nick", dataSnapshot.child(index).child("name").value.toString())
+                            setResult(Activity.RESULT_OK,i)
                             finish()
                         }
+                        check++
                     }
                     if (flag == 0)
                         Toast.makeText(applicationContext, "아이디 또는 비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
@@ -47,7 +58,6 @@ class LoginActivity : AppCompatActivity() {
 
 
         }
-
 
         signup_button.setOnClickListener {
             var signupIntent = Intent(this, SignUpActivity::class.java)

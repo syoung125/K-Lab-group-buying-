@@ -18,10 +18,12 @@ class Fragment4 : Fragment() {
         val v = inflater.inflate(R.layout.fragment_fragment4, container, false)
         v.findViewById<Button>(R.id.product_notice).setOnClickListener {
             var i = Intent(activity?.applicationContext, AlarmListActivity::class.java)
+            i.putExtra("user",MainActivity.u_num)
             startActivity(i)
         }
         v.findViewById<Button>(R.id.record_more_btn).setOnClickListener {
             val i = Intent(activity?.applicationContext,RecordListActivity::class.java)
+            i.putExtra("user",MainActivity.u_num)
             startActivity(i)
         }
         return v

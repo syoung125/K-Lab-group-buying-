@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.Toast
+import com.example.klapproject.MainActivity.Companion.doc_list
 import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.fragment_fragment1.view.*
 import java.util.*
@@ -61,7 +62,7 @@ class Fragment1 : Fragment() {
     fun initLayout(){
         var layoutManager= GridLayoutManager(this.requireContext(),2)
         rview.layoutManager = layoutManager
-        adapter = CategoryAdapter(doc_list)
+        adapter = CategoryAdapter(MainActivity.doc_list)
         rview.adapter = adapter
 
         adapter.itemClickListener = object : CategoryAdapter.OnItemClickListener{
