@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity()/*,Fragment1.makeIntent*/ {
 
         var longinintent = Intent(this, LoginActivity::class.java)
         startActivityForResult(longinintent,1)
-
         init()
     }
 
