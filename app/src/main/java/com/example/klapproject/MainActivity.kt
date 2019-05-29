@@ -7,16 +7,19 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),Fragment1.makeIntent {
+var doc_list:MutableList<Document> = mutableListOf()
+var u_nickname:String = "user123"
 
-    override fun makeIntent(num: Int) {
-        val i = Intent(this, CategoryActivity::class.java)
-        // 명시적으로 원하는 창 설정을 만듦
-        i.putExtra("Category", num)
-        // 단일 값이 아닌 객체를 만들어 넘기고 싶음
-        startActivity(i)
-        // 해당 intent 를 실행
-    }
+class MainActivity : AppCompatActivity()/*,Fragment1.makeIntent*/ {
+
+//    override fun makeIntent(num: Int) {
+//        val i = Intent(this, CategoryActivity::class.java)
+//        // 명시적으로 원하는 창 설정을 만듦
+//        i.putExtra("Category", num)
+//        // 단일 값이 아닌 객체를 만들어 넘기고 싶음
+//        startActivity(i)
+//        // 해당 intent 를 실행
+//    }
 
     private var tabLayer:TabLayout?= null
     override fun onCreate(savedInstanceState: Bundle?) {
