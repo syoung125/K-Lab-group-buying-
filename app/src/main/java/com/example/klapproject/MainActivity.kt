@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 var doc_list:MutableList<Document> = mutableListOf()
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity()/*,Fragment1.makeIntent*/ {
 
         if(requestCode == 1){
           if(resultCode == Activity.RESULT_CANCELED)
-            finish()
+            Toast.makeText(this,"로그인 성공",Toast.LENGTH_SHORT).show()
         }
     }
 
