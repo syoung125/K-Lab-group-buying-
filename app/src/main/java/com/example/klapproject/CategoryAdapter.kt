@@ -1,6 +1,8 @@
 package com.example.klapproject
 
 import android.content.Context
+import android.net.Uri
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,37 +11,66 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 
-class CategoryAdapter (context: Context, val resource:Int, var list:MutableList<Document>)
+class CategoryAdapter (var list:MutableList<Document>)
     // 객체 생성될 때 전달되는 값 Context
     // Layout의 id 정보 (int), 정보를 가진 배열 ArrayList 을 받는 생성자
-        : ArrayAdapter<Document>(context,resource,list)
-    // ArrayAdapter를 받을 경우
-    // 부모 생성자에겐 3개의 인자전달이 필요
+    : RecyclerView.Adapter<CategoryAdapter.ViewHolder>()
     {
-        // ctrl + O = 오버라이딩 가능한 함수 목록
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            var v: View? = convertView
-            // 이미 만들어진 뷰가 있는 경우, 기존 뷰의 정보가 들어오고, 정보 수정
-            // 처음인 경우, null 값이 들어옴 (view를 생성해줘야 함)
-            if (v == null) { //만들어진 view가 없다면
-                val vi = context.applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                // layout 객체를 받아온 것과 동일
-                v = vi.inflate(resource, null)
-                // 레이아웃 정보와 루트로 사용 여부
-            }
-
-            val p = list.get(position)
-            v!!.findViewById<ImageView>(R.id.c_Img)
-            v!!.findViewById<TextView>(R.id.c_title).text = p.d_title
-            v!!.findViewById<TextView>(R.id.c_onoff).text = if(p.d_onoff) "온라인"
-                                                            else "오프라인"
-            v!!.findViewById<TextView>(R.id.c_person).text = p.d_gather.toString() + " 명"
-            v!!.findViewById<TextView>(R.id.c_money).text = p.d_price.toString() + " 원"
-
-            // 리스트 뷰에 붙는 모든 놈들이 하나의 객체이므로
-            // 각각에 대해서 리스너를 달아줘야함
-
-            return v // 만들었으니 만든거 return
-            //return super.getView(position, convertView, parent)
+        interface OnItemClickListener{ //내가 내 클래스에서 호출할 함수를 내가 정의해놈, 내가 호출할꺼 약속
+            fun OnItemClick(holder:ViewHolder,view:View,data:Document,position:Int)
         }
+        var itemClickListener : OnItemClickListener? = null
+
+        override fun onCreateViewHolder(p0: ViewGroup, p1: Int): CategoryAdapter.ViewHolder {
+            val v= LayoutInflater.from(p0.context).inflate(R.layout.category_form, p0, false)
+            return ViewHolder(v)
+        }
+
+        override fun getItemCount(): Int {
+            return list.size
+        }
+
+        inner class ViewHolder(itemView: View)  //사용할 멤버 구성
+            :RecyclerView.ViewHolder(itemView){
+            var url:ImageView
+            var title:TextView
+            var person:TextView
+            var detail:TextView
+            var onoff:TextView
+            var money:TextView
+            init{
+                url=itemView.findViewById(R.id.c_Img)   //레이아웃에서 textView에 해당하는 것을 찾아서 멤버로 둠
+                title=itemView.findViewById(R.id.c_title)
+                person=itemView.findViewById(R.id.c_person)
+                detail=itemView.findViewById(R.id.c_detail)
+                onoff=itemView.findViewById(R.id.c_onoff)
+                money=itemView.findViewById(R.id.c_money)
+                //4/17-(2)
+                itemView.setOnClickListener {
+                    val position = adapterPosition
+                    itemClickListener?.OnItemClick(this,it,list[position],position)
+                }
+
+            }
+        }
+
+
+        override fun onBindViewHolder(p0: ViewHolder, p1: Int)  //뷰홀더의 포지션 정보 오고 멤버들을 초기화,데이터연결
+        {
+            //viewHolder가 가지고 있는 내역들을 여기서 초기화
+            p0.url.setImageURI(Uri.parse(list.get(p1).d_url))
+            p0.title.text = list.get(p1).d_title
+            p0.person.text = list.get(p1).d_num.toString()+" 명"
+            p0.detail.text = list.get(p1).d_info
+            var t_str:String =""
+            var on=list.get(p1).d_on
+            var off=list.get(p1).d_off
+            if(on) t_str +="on"
+            if(on && off) t_str += "/"
+            if(off) t_str += "off"
+            p0.onoff.text = t_str
+            p0.money.text = list.get(p1).d_price.toString()+" 원"
+
+        }
+
     }
