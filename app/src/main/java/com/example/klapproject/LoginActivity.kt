@@ -32,8 +32,8 @@ class LoginActivity : AppCompatActivity() {
 
                         if (id == editText_id.text.toString() && pw == editText_pw.text.toString()) {
                             flag = 1
-                            var gohomeIntent = Intent(applicationContext, MainActivity::class.java)
-                            startActivity(gohomeIntent)
+                            var gohomeIntent = Intent()
+                            finish()
                         }
                     }
                     if (flag == 0)
@@ -47,6 +47,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         }
+
 
         signup_button.setOnClickListener {
             var signupIntent = Intent(this, SignUpActivity::class.java)

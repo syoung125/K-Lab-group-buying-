@@ -3,6 +3,7 @@ package com.example.klapproject
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.FragmentActivity
 import android.util.Log
 import android.widget.Toast
@@ -22,10 +23,14 @@ class MainLoadActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_load)
 
-        temp_start_button.setOnClickListener {
-            var longinintent = Intent(this, LoginActivity::class.java)
-            startActivity(longinintent)
-        }
+
+
+        val handler = Handler()
+        handler.postDelayed(Runnable {
+            var intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+
+            finish() }, 2000)
     }
 
 }

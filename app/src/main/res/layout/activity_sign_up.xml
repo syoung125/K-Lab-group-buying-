@@ -28,7 +28,8 @@
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:layout_marginVertical="5dp"
                   android:orientation="horizontal">
-        <EditText android:hint="아이디(학교 e-mail)" android:id="@+id/ET_su_email"
+        <EditText android:hint="아이디 (학교 e-mail)" android:id="@+id/ET_su_email"
+                  android:inputType="textEmailAddress"
                   android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2"/>
         <Button
                 android:text="인증메일 발송" android:textSize="15sp"
@@ -40,6 +41,7 @@
                   android:layout_marginVertical="5dp"
                   android:orientation="horizontal">
         <EditText android:hint="인증번호" android:id="@+id/ET_num"
+                  android:inputType="number"
                   android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2"/>
         <Button
                 android:text="확인" android:textSize="15sp"
