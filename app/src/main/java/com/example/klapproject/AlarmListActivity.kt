@@ -82,7 +82,7 @@ class AlarmListActivity : AppCompatActivity() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 adapter!!.removeItem(viewHolder.adapterPosition)
 
-                
+
                 // 어댑터에 정의된 삭제함수
             }
         }
