@@ -28,7 +28,7 @@ class WritingForm : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_writing_form)
-        t_d = Document(u_nickname)
+        t_d = Document(MainActivity.u_nickname!!)
         init()
     }
 
@@ -49,7 +49,7 @@ class WritingForm : AppCompatActivity() {
                 Toast.makeText(this, "입력하지 않은 항목이 있습니다.", Toast.LENGTH_SHORT).show()
             }else{
                 t_d.d_now = LocalDateTime.now()
-                doc_list.add(t_d)
+                MainActivity.doc_list.add(t_d)
                 //디비에 등록
                 t_d.regi_firebase()
                 var gohomeintent = Intent(this, MainActivity::class.java)

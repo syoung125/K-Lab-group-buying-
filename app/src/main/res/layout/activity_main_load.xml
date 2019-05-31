@@ -12,10 +12,5 @@
             android:layout_width="200dp" android:layout_height="200dp" android:scaleType="fitXY"
             app:srcCompat="@drawable/main_logo"
             android:id="@+id/imageView"/>
-    <Button
-            android:text="시작하기"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/temp_start_button"/>
 
 </LinearLayout>
