@@ -17,6 +17,7 @@
             <TextView
                     android:text="c_title" android:textColor="#000000"
                     android:gravity="center_vertical"
+                    android:singleLine="true" android:ellipsize="end"
                     android:layout_weight="3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent" android:id="@+id/c_title" android:textSize="17sp"/>

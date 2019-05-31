@@ -51,6 +51,7 @@ class WritingForm : AppCompatActivity() {
                 t_d.d_now = LocalDateTime.now()
                 doc_list.add(t_d)
                 //디비에 등록
+                t_d.regi_firebase()
                 var gohomeintent = Intent(this, MainActivity::class.java)
                 startActivity(gohomeintent)
             }
@@ -71,10 +72,10 @@ class WritingForm : AppCompatActivity() {
         t_d.d_title=wf_title.text.toString()
         t_d.d_market = wf_detail.text.toString()
         t_d.d_info = wf_more.text.toString()
-        t_d.d_num = wf_peoplenum.text.toString().toInt()
-        t_d.d_price = wf_price.text.toString().toInt()
+        t_d.d_num = wf_peoplenum.text.toString()
+        t_d.d_price = wf_price.text.toString()
         t_d.d_place = wf_location.text.toString()
-        t_d.d_duty = wf_fee.text.toString().toInt()
+        t_d.d_duty = wf_fee.text.toString()
     }
 
     fun getUrl(){
@@ -124,6 +125,7 @@ class WritingForm : AppCompatActivity() {
         if (requestCode == SELECT_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
                 wf_imageView.setImageURI(data!!.data)
+//                t_d.uri = data!!.data
                 t_d.d_url = data!!.data.toString()
             }
         }
@@ -137,7 +139,7 @@ class WritingForm : AppCompatActivity() {
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             Log.v(TAG, position.toString()+": "+parent?.getItemAtPosition(position).toString())
-            t_d.d_category = position
+            t_d.d_category = position.toString()
         }
     }
 
