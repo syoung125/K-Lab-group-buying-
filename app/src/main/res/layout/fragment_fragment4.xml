@@ -59,13 +59,7 @@
                               android:layout_height="0dp"
                               android:textStyle="bold"
                               android:textSize="18sp"/>
-                    <TextView android:layout_width="match_parent"
-                              android:text="거래횟수 : 13번 (GOLD)"
-                              android:gravity="left|center"
-                              android:paddingLeft="10dp"
-                              android:id="@+id/deal_count"
-                              android:layout_weight="1"
-                              android:layout_height="0dp"/>
+
                 </LinearLayout>
             </LinearLayout>
             <!--리뷰보기 텍스트와 더보기 버튼-->

@@ -52,6 +52,8 @@ class Fragment4 : Fragment() {
     }
 
     fun load(){
+        user_name.text = MainActivity.u_nickname
+
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("user")
         myRef.addValueEventListener(object : ValueEventListener {
