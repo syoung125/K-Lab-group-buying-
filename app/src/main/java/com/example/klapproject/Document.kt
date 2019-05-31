@@ -21,7 +21,7 @@ import com.google.firebase.storage.StorageReference
 import java.io.File
 
 
-data class Document(var d_postnickname:String) {
+data class Document(var d_postnickname:String?) {
     //인자: 게시자
     var d_now:LocalDateTime? = null   //현재날짜
 //    var uri:Uri ?=null   //URI
