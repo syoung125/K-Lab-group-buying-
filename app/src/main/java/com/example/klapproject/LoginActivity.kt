@@ -50,7 +50,6 @@ class LoginActivity : AppCompatActivity() {
                     if (flag == 0)
                         Toast.makeText(applicationContext, "아이디 또는 비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
                 }
-
                 override fun onCancelled(databaseError: DatabaseError) {
 
                 }

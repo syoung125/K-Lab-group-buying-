@@ -91,7 +91,7 @@ class Fragment1 : Fragment() {
                     show_list.clear()
                     for (i in d.children) {
                         val index = i.key.toString()
-                        Log.v(TAG, i.toString()+" 갖고오는거 맞냐"+index)
+                        Log.v(TAG, i.toString()+", index ${index}")
                         var td: Document = Document(u_nickname)
                         td.d_category = d.child(index).child("category").value.toString()
                         if(mchoice != 0 && td.d_category != (mchoice-1).toString())
@@ -106,6 +106,7 @@ class Fragment1 : Fragment() {
                         td.d_price = d.child(index).child("price").value.toString()
                         td.d_place = d.child(index).child("place").value.toString()
                         td.d_duty = d.child(index).child("duty").value.toString()
+
                         show_list.add(td)
                     }
                     adapter.notifyDataSetChanged()
@@ -125,8 +126,10 @@ class Fragment1 : Fragment() {
         adapter.itemClickListener = object : CategoryAdapter.OnItemClickListener{
             override fun OnItemClick(holder: CategoryAdapter.ViewHolder, view: View, data: Document, position: Int) {
                 Toast.makeText(context, data.d_title, Toast.LENGTH_SHORT).show()
-                //this->interface를 의히마니까 applicationContext로 해줌
-                //특정 포지션 정보가 필요하면 이런식으로 만들어 줘아함!
+                //data에 해당하는 정보 넘겨줘야함
+                var detailPage = Intent(context, DocumentDetailActivity::class.java)
+                detailPage.putExtra("mydata", Document("testuser"))
+                startActivity(detailPage) ////왜 오류나??
             }
         }
 

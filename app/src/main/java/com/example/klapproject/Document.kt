@@ -19,9 +19,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.StorageMetadata
 import com.google.firebase.storage.StorageReference
 import java.io.File
+import java.io.Serializable
+import java.time.Instant.now
 
 
-data class Document(var d_postnickname:String?) {
+data class Document(var d_postnickname:String?): Serializable {
     //인자: 게시자
     var d_now:LocalDateTime? = null   //현재날짜
 //    var uri:Uri ?=null   //URI
@@ -37,7 +39,6 @@ data class Document(var d_postnickname:String?) {
     var d_place:String? = null // 만날 장소
     var d_duty:String? = null //수수료
     var fb = FirebaseDatabase.getInstance()
-    var storageRef = FirebaseStorage.getInstance().getReference()
     val TAG:String = "Document"
 
     fun is_empty():Boolean{
@@ -60,6 +61,7 @@ data class Document(var d_postnickname:String?) {
         insert.child("price").setValue(d_price)
         insert.child("place").setValue(d_place)
         insert.child("duty").setValue(d_duty)
+        insert.child("time").setValue(d_now)
         uploadImageToFirebaseStorage()
     }
     fun uploadImageToFirebaseStorage(){
@@ -67,7 +69,7 @@ data class Document(var d_postnickname:String?) {
         //val filename = UUID.randomUUID().toString()
         var selectedPhotoUri = Uri.parse(d_url)
         var ref= FirebaseStorage.getInstance().reference.child("images")
-        var imagesRef = ref.child("images/"+d_url)
+        var imagesRef = ref.child("${d_now}: ${d_postnickname}")
         imagesRef.putFile(selectedPhotoUri!!)
             .addOnSuccessListener {
                 Log.v(TAG, "사진 업로드 성공")
@@ -76,32 +78,6 @@ data class Document(var d_postnickname:String?) {
                 // Handle unsuccessful uploads
                 Log.v(TAG, "사진 업로드 실패")
             }
-
-
-
-
-//        var file = Uri.fromFile(File("images/"+d_url))
-//        var uploadTask = storageRef.child("images/${file.lastPathSegment}").putFile(file)
-//
-//
-//        uploadTask.addOnFailureListener {
-//            // Handle unsuccessful uploads
-//            Log.v(TAG, "사진 업로드 실패")
-//        }.addOnSuccessListener {
-//            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-//            // ...
-//            storageRef.downloadUrl.addOnSuccessListener {
-//                var downloadUri:Uri = it
-//                Log.v(TAG, "Upload success! URL - " + downloadUri.toString())
-//            }
-//        }.removeOnPausedListener {
-//            Log.v(TAG, "중지")
-//
-//        }.addOnProgressListener {
-//            val progress = (100.0 * it.bytesTransferred) / it.totalByteCount
-//            Log.v(TAG,"Upload is $progress% done")
-//        }
-
 
     }
 
