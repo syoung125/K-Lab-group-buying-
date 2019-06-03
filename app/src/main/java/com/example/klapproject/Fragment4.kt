@@ -31,12 +31,12 @@ class Fragment4 : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_fragment4, container, false)
 
-        textView.add(v.findViewById(R.id.review1_count))
-        textView.add(v.findViewById(R.id.review2_count))
-        textView.add(v.findViewById(R.id.review3_count))
-        data.add(0)
-        data.add(0)
-        data.add(0)
+//        textView.add(v.findViewById(R.id.review1_count))
+////        textView.add(v.findViewById(R.id.review2_count))
+////        textView.add(v.findViewById(R.id.review3_count))
+////        data.add(0)
+////        data.add(0)
+////        data.add(0)
         load()
 
         v.findViewById<Button>(R.id.product_notice).setOnClickListener {
