@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_record_list.*
 import kotlinx.android.synthetic.main.fragment_fragment4.*
+import kotlinx.android.synthetic.main.fragment_fragment4.view.*
 
 class Fragment4 : Fragment() {
 
@@ -48,11 +49,12 @@ class Fragment4 : Fragment() {
             i.putExtra("user",MainActivity.u_num)
             startActivity(i)
         }
+        v.user_name.setText(MainActivity.u_nickname)
         return v
     }
 
     fun load(){
-        user_name.text = MainActivity.u_nickname
+
 
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("user")
