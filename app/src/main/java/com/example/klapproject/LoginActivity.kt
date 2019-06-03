@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.util.Log
 import android.widget.Toast
+import com.bumptech.glide.Glide.init
 import kotlinx.android.synthetic.main.activity_login.*
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.DatabaseError
@@ -43,7 +44,9 @@ class LoginActivity : AppCompatActivity() {
                             i.putExtra("user", check)
                             i.putExtra("nick", dataSnapshot.child(index).child("name").value.toString())
                             setResult(Activity.RESULT_OK,i)
-                            finish()
+//                            finish()
+                            var mainPage = Intent(applicationContext, MainActivity::class.java)
+                            startActivity(mainPage)
                         }
                         check++
                     }

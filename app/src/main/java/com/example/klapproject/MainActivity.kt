@@ -17,24 +17,12 @@ class MainActivity : AppCompatActivity()/*,Fragment1.makeIntent*/ {
         var doc_list:MutableList<Document> = mutableListOf()
     }
 
-//    override fun makeIntent(num: Int) {
-//        val i = Intent(this, CategoryActivity::class.java)
-//        // 명시적으로 원하는 창 설정을 만듦
-//        i.putExtra("Category", num)
-//        // 단일 값이 아닌 객체를 만들어 넘기고 싶음
-//        startActivity(i)
-//        // 해당 intent 를 실행
-//    }
 
     private var tabLayer:TabLayout?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-        var longinintent = Intent(this, LoginActivity::class.java)
-        startActivityForResult(longinintent,1)
         init()
     }
 
