@@ -39,6 +39,8 @@ class LoginActivity : AppCompatActivity() {
                         val pw = dataSnapshot.child(index).child("password").value.toString()
 
                         if (id == editText_id.text.toString() && pw == editText_pw.text.toString()) {
+                            MY_ID = id
+                            MY_NICK = dataSnapshot.child(index).child("name").value.toString()
                             flag = 1
                             val i = Intent()
                             i.putExtra("user", check)
