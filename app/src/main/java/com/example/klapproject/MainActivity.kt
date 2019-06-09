@@ -31,9 +31,10 @@ class MainActivity : AppCompatActivity()/*,Fragment1.makeIntent*/ {
 
         if(requestCode == 1){
           if(resultCode == Activity.RESULT_OK) {
-              Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
               u_num = data?.getIntExtra("user", -1)
               u_nickname = data?.getStringExtra("nick")
+//              currentUser = data?.getStringExtra("userid")
+//              Toast.makeText(applicationContext, "currentUser: ${currentUser}", Toast.LENGTH_SHORT).show()
               Log.e("메인", "$u_num\t$u_nickname")
           }
             else

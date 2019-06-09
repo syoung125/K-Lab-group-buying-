@@ -48,7 +48,9 @@ class WritingForm : AppCompatActivity() {
             if(t_d.is_empty()){
                 Toast.makeText(this, "입력하지 않은 항목이 있습니다.", Toast.LENGTH_SHORT).show()
             }else{
-                t_d.d_now = LocalDateTime.now()
+                var now = LocalDateTime.now()
+                var timestr = "${now.year}-${now.month}-${now.dayOfMonth}T${now.hour}:${now.minute}:${now.second}"
+                t_d.d_now = timestr
                 MainActivity.doc_list.add(t_d)
                 //디비에 등록
                 t_d.regi_firebase()

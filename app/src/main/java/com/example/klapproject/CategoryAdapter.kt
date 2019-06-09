@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import com.google.firebase.storage.FirebaseStorage
+import com.koushikdutta.ion.Ion
 
 class CategoryAdapter (var list:MutableList<Document>)
     // 객체 생성될 때 전달되는 값 Context
@@ -33,14 +34,14 @@ class CategoryAdapter (var list:MutableList<Document>)
 
         inner class ViewHolder(itemView: View)  //사용할 멤버 구성
             :RecyclerView.ViewHolder(itemView){
-            var url:ImageView
+            var imageView:ImageView
             var title:TextView
             var person:TextView
             var detail:TextView
             var onoff:TextView
             var money:TextView
             init{
-                url=itemView.findViewById(R.id.c_Img)   //레이아웃에서 textView에 해당하는 것을 찾아서 멤버로 둠
+                imageView=itemView.findViewById(R.id.c_Img)   //레이아웃에서 textView에 해당하는 것을 찾아서 멤버로 둠
                 title=itemView.findViewById(R.id.c_title)
                 person=itemView.findViewById(R.id.c_person)
                 detail=itemView.findViewById(R.id.c_detail)
@@ -59,14 +60,8 @@ class CategoryAdapter (var list:MutableList<Document>)
         override fun onBindViewHolder(p0: ViewHolder, p1: Int)  //뷰홀더의 포지션 정보 오고 멤버들을 초기화,데이터연결
         {
             //viewHolder가 가지고 있는 내역들을 여기서 초기화
-            // Reference to an image file in Cloud Storage
             val storageReference = FirebaseStorage.getInstance().reference
-// Download directly from StorageReference using Glide
-// (See MyAppGlideModule for Loader registration)
-//            GlideApp.with(this /* context */)
-//                .load(storageReference)
-//                .into(imageView)
-            p0.url.setImageURI(Uri.parse(list.get(p1).d_url))
+            Ion.with(p0.imageView).load(list.get(p1).d_storageFileName)
             p0.title.text = list.get(p1).d_title
             p0.person.text = list.get(p1).d_num.toString()+" 명"
             p0.detail.text = list.get(p1).d_info

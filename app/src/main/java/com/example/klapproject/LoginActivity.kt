@@ -39,14 +39,15 @@ class LoginActivity : AppCompatActivity() {
                         val pw = dataSnapshot.child(index).child("password").value.toString()
 
                         if (id == editText_id.text.toString() && pw == editText_pw.text.toString()) {
-                            flag = 1
+                                flag = 1
                             val i = Intent()
                             i.putExtra("user", check)
+//                            i.putExtra("userid", id)
                             i.putExtra("nick", dataSnapshot.child(index).child("name").value.toString())
                             setResult(Activity.RESULT_OK,i)
 //                            finish()
                             var mainPage = Intent(applicationContext, MainActivity::class.java)
-                            startActivity(mainPage)
+                            startActivityForResult(mainPage, 1)
                         }
                         check++
                     }

@@ -96,6 +96,7 @@ class Fragment1 : Fragment() {
                         td.d_category = d.child(index).child("category").value.toString()
                         if(mchoice != 0 && td.d_category != (mchoice-1).toString())
                             continue
+                        td.d_storageFileName = d.child(index).child("sFileName").value.toString()
                         td.d_url = d.child(index).child("uri").value.toString()
                         td.d_title = d.child(index).child("title").value.toString()
                         td.d_on = d.child(index).child("on").value.toString().toBoolean()
@@ -106,6 +107,7 @@ class Fragment1 : Fragment() {
                         td.d_price = d.child(index).child("price").value.toString()
                         td.d_place = d.child(index).child("place").value.toString()
                         td.d_duty = d.child(index).child("duty").value.toString()
+                        //채팅 참여하는 인원정보 알ㄹ려면 array 정보도 받아야함
 
                         show_list.add(td)
                     }
@@ -127,9 +129,9 @@ class Fragment1 : Fragment() {
             override fun OnItemClick(holder: CategoryAdapter.ViewHolder, view: View, data: Document, position: Int) {
                 Toast.makeText(context, data.d_title, Toast.LENGTH_SHORT).show()
                 //data에 해당하는 정보 넘겨줘야함
-                var detailPage = Intent(context, DocumentDetailActivity::class.java)
-                detailPage.putExtra("mydata", Document("testuser"))
-                startActivity(detailPage) ////왜 오류나??
+                var detailPage = Intent(this@Fragment1.context, DocumentDetailActivity::class.java)
+                detailPage.putExtra("mydata",data)
+                startActivity(detailPage)
             }
         }
 
