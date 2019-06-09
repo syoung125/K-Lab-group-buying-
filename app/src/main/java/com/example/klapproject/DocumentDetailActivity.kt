@@ -27,7 +27,7 @@ class DocumentDetailActivity : AppCompatActivity() {
     fun datainit(){
         Ion.with(iv_img).load(data!!.d_storageFileName)
         val ctgarr:Array<String> = resources.getStringArray(R.array.spin_arr)
-        tv_ctg.text = ctgarr[data!!.d_category!!.toInt()+1]
+        tv_ctg.text = ctgarr[data!!.d_category!!.toInt()]
         tv_title.text= data!!.d_title
         var on=data!!.d_on
         var off=data!!.d_off

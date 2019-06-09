@@ -16,7 +16,8 @@ import com.google.firebase.database.DataSnapshot
 import kotlinx.android.synthetic.main.activity_chat.*
 import com.google.firebase.database.ChildEventListener
 
-var currentUser:String? = null
+lateinit var MY_ID:String
+lateinit var MY_NICK:String
 
 class MainLoadActivity : AppCompatActivity() {
 

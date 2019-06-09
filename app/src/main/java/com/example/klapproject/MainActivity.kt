@@ -9,8 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
-lateinit var MY_ID:String
-lateinit var MY_NICK:String
+
 
 class MainActivity : AppCompatActivity()/*,Fragment1.makeIntent*/ {
 
