@@ -11,14 +11,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 
+
 class MainActivity : AppCompatActivity()/*,Fragment1.makeIntent*/ {
 
     companion object{
-        var u_nickname:String? = "user123"
-        var u_num:Int?=null
         var doc_list:MutableList<Document> = mutableListOf()
     }
-
 
     private var tabLayer:TabLayout?= null
 
@@ -31,17 +29,17 @@ class MainActivity : AppCompatActivity()/*,Fragment1.makeIntent*/ {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == 1){
-          if(resultCode == Activity.RESULT_OK) {
-              u_num = data?.getIntExtra("user", -1)
-              u_nickname = data?.getStringExtra("nick")
-//              currentUser = data?.getStringExtra("userid")
-//              Toast.makeText(applicationContext, "currentUser: ${currentUser}", Toast.LENGTH_SHORT).show()
-              Log.e("메인", "$u_num\t$u_nickname")
-          }
-            else
-              finish()
-        }
+//        if(requestCode == 1){
+//          if(resultCode == Activity.RESULT_OK) {
+//              u_num = data?.getIntExtra("user", -1)
+//              u_nickname = data?.getStringExtra("nick")
+////              currentUser = data?.getStringExtra("userid")
+////              Toast.makeText(applicationContext, "currentUser: ${currentUser}", Toast.LENGTH_SHORT).show()
+//              Log.e("메인", "$u_num\t$u_nickname")
+//          }
+//            else
+//              finish()
+//        }
     }
 
     fun init(){

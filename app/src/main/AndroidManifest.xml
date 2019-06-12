@@ -15,6 +15,12 @@
         <activity android:name=".DocumentDetailActivity"
                   android:theme="@style/Theme.Design.Light.NoActionBar">
         </activity>
+        <activity android:name=".RecordListActivity"
+                  android:theme="@style/Theme.Design.Light.NoActionBar">
+        </activity>
+        <activity android:name=".AlarmListActivity"
+                  android:theme="@style/Theme.Design.Light.NoActionBar">
+        </activity>
         <activity
                 android:name=".CategoryActivity"
                 android:theme="@style/Theme.Design.Light.NoActionBar"

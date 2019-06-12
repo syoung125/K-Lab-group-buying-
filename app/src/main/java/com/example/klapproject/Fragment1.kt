@@ -17,8 +17,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.example.klapproject.MainActivity.Companion.doc_list
-import com.example.klapproject.MainActivity.Companion.u_nickname
 import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_fragment1.*
@@ -85,7 +83,7 @@ class Fragment1 : Fragment() {
                     for (i in d.children) {
                         val index = i.key.toString()
                         Log.v(TAG, i.toString()+", index ${index}")
-                        var td: Document = Document(u_nickname)
+                        var td: Document = Document(MY_NICK)
                         td.d_category = d.child(index).child("category").value.toString()
                         if(mchoice != 0 && td.d_category != (mchoice-1).toString())
                             continue
