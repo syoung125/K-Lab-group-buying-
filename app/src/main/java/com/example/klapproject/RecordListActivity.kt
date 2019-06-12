@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -30,7 +31,7 @@ class RecordListActivity : AppCompatActivity() {
         val myRef = database.getReference("user")
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val a_list = dataSnapshot.child(MainActivity.u_num.toString()).child("tran_list")
+                val a_list = dataSnapshot.child(MY_ID).child("tran_list")
                 for (k in a_list.children) {
                     Log.e("리코드",k.toString())
                     data.add(k.child("post_id").value.toString())
@@ -48,23 +49,27 @@ class RecordListActivity : AppCompatActivity() {
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                var v=0
-                for (k in dataSnapshot.children) {
-                    Log.e("load2", k.toString())
+                if (data.size != 0) {
+                    var v = 0
+                    for (k in dataSnapshot.children) {
+                        Log.e("load2", k.toString())
 
-                    if (k.key.toString() == data[v]) {
-                        info.add(
-                            RecordData(
-                                k.child("title").value.toString(),
-                                k.child("category").value.toString().toInt()
+                        if (k.key.toString() == data[v]) {
+                            info.add(
+                                RecordData(
+                                    k.child("title").value.toString(),
+                                    k.child("category").value.toString().toInt()
+                                )
                             )
-                        )
-                        v++
-                        if(v == data.size)
-                            break;
+                            v++
+                            if (v == data.size)
+                                break;
+                        }
                     }
+                    initAdapter()
                 }
-                initAdapter()
+                else
+                    Toast.makeText(applicationContext,"완수한 거래내역이 없어요",Toast.LENGTH_LONG).show()
             }
             override fun onCancelled(databaseError: DatabaseError) {
 

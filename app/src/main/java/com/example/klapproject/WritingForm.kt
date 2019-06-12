@@ -19,11 +19,13 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import android.Manifest
 import android.widget.AdapterView
+import com.google.firebase.database.FirebaseDatabase
 
 class WritingForm : AppCompatActivity() {
     val SELECT_IMAGE = 100
     val TAG = "writing_form"
     lateinit var t_d:Document    //인자: 게시자, 현재 날짜
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +56,12 @@ class WritingForm : AppCompatActivity() {
                 MainActivity.doc_list.add(t_d)
                 //디비에 등록
                 t_d.regi_firebase()
+
+                // user에 올린 게시물 추가
+                var user_upload = FirebaseDatabase.getInstance().getReference("user/$MY_ID")
+                var user_upload_list = user_upload.child("upload_list").push()
+                user_upload_list.setValue(t_d.d_title.toString())
+
                 var gohomeintent = Intent(this, MainActivity::class.java)
                 startActivity(gohomeintent)
             }
