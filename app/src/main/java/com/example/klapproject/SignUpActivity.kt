@@ -5,36 +5,58 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.bumptech.glide.Glide.init
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import com.google.firebase.auth.AuthResult
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 
 
 class SignUpActivity : Activity() {
-
-
-
-
-    var a:Boolean = true
-    var b:Boolean = true
-    var c:Boolean = true
-    var d:Boolean = true
+    var a: Boolean = true
+    var b: Boolean = true
+    var c: Boolean = true
+    var d: Boolean = true
     var identiNum = -1
     var firebaseAuth = FirebaseAuth.getInstance()
+    lateinit var rdb: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        setBtn()
+        //setBtn()
+        init()
     }
 
-    fun allCheck():Boolean{
-        if(a && b && c && d)
+    fun init() {
+        val id = ET_su_email.text.toString()
+        rdb = FirebaseDatabase.getInstance().getReference("user")
+        btnCreateAccount.setOnClickListener {
+            val user = User(
+                id,
+                ET_su_pw.text.toString(),
+                ET_nickname.text.toString(),
+                edit_place.text.toString(),
+                edit_univ.text.toString(),
+                4.5
+            )
+
+            rdb.child(ET_su_email.text.toString()).setValue(user)
+
+            var insert = FirebaseDatabase.getInstance().getReference("user/$id")
+            insert.child("alarm_list").setValue("")
+            finish()
+        }
+    }
+
+
+    fun allCheck(): Boolean {
+        if (a && b && c && d)
             return true
-        else{
-            Toast.makeText(this,"회원 가입 절차를 모두 완료해주세요",Toast.LENGTH_SHORT).show()
+        else {
+            Toast.makeText(this, "회원 가입 절차를 모두 완료해주세요", Toast.LENGTH_SHORT).show()
             return false
         }
     }
@@ -43,7 +65,7 @@ class SignUpActivity : Activity() {
         //버튼이벤트
         btnCreateAccount!!.setOnClickListener {
             //회원가입
-            Log.e("SignUp","회원가입 시도")
+            Log.e("SignUp", "회원가입 시도")
             if (allCheck()) {
                 // 모든 조건 충족
                 val userID = ET_su_email.text.toString()
@@ -52,43 +74,43 @@ class SignUpActivity : Activity() {
                 insert.child("id").setValue(userID)
                 insert.child("password").setValue(userPW)
 
-                Log.e("SignUp","회원가입 성공")
+                Log.e("SignUp", "회원가입 성공")
 
                 finish()
             }
         }
-        su_sendmail.setOnClickListener{
+        su_sendmail.setOnClickListener {
             // 인증메일 발송
-            Log.e("SignUp","인증메일 발송")
+            Log.e("SignUp", "인증메일 발송")
 
             ET_su_email.text
             identiNum = (1000..9999).random()
             sendMail()
-            Toast.makeText(this,"해당 메일로 인증번호가 발송되었습니다",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "해당 메일로 인증번호가 발송되었습니다", Toast.LENGTH_SHORT).show()
         }
 
         su_checkmail.setOnClickListener {
             // 인증 번호 확인
             ET_num.text
-            Log.e("SignUp","인증 시도")
-            Toast.makeText(this,"인증에 성공하였습니다",Toast.LENGTH_SHORT).show()
+            Log.e("SignUp", "인증 시도")
+            Toast.makeText(this, "인증에 성공하였습니다", Toast.LENGTH_SHORT).show()
         }
 
-        su_checkduplicate.setOnClickListener{
+        su_checkduplicate.setOnClickListener {
             // 닉네임 중복 확인
-            Log.e("SignUp","닉네임 중복확인")
+            Log.e("SignUp", "닉네임 중복확인")
             ET_nickname.text
         }
 
         su_checkLocation.setOnClickListener {
             // 위치 인증
-            Log.e("SignUp","위치 인증")
+            Log.e("SignUp", "위치 인증")
         }
     }
 
-    fun sendMail(){
+    fun sendMail() {
 
-        var email =  ET_su_email.text.toString()
+        var email = ET_su_email.text.toString()
         var password = ET_su_pw.text.toString()
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
