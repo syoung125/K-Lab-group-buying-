@@ -40,9 +40,9 @@ class SignUpActivity : Activity() {
             val user = User(
                 ET_su_email.text.toString(),
                 ET_su_pw.text.toString(),
+                edit_univ.text.toString(),
                 ET_nickname.text.toString(),
                 edit_place.text.toString(),
-                edit_univ.text.toString(),
                 4.5
             )
             rdb.child(ET_su_email.text.toString()).setValue(user)
