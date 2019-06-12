@@ -85,7 +85,8 @@ class Fragment1 : Fragment() {
                     for (i in d.children) {
                         val index = i.key.toString()
                         Log.v(TAG, i.toString()+", index ${index}")
-                        var td: Document = Document(u_nickname)
+                        var td: Document = Document("")
+                        td.d_postnickname = d.child(index).child("nickname").value.toString()
                         td.d_category = d.child(index).child("category").value.toString()
                         if(mchoice != 0 && td.d_category != (mchoice-1).toString())
                             continue
@@ -101,8 +102,10 @@ class Fragment1 : Fragment() {
                         td.d_place = d.child(index).child("place").value.toString()
                         td.d_duty = d.child(index).child("duty").value.toString()
                         //채팅 참여하는 인원정보 알ㄹ려면 array 정보도 받아야함
-                        //td.d_chatlist = arrayOf(d.child(index).child("chatUser").value)
-
+                        for(lindex in d.child(index).child("chatUser").children){
+                            td.d_chatlist.add(lindex.value.toString())
+                        }
+                        td.d_now = d.child(index).child("time").value.toString()
                         show_list.add(td)
                     }
                     adapter.notifyDataSetChanged()

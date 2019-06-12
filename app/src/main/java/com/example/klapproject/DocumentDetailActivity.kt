@@ -44,7 +44,10 @@ class DocumentDetailActivity : AppCompatActivity() {
 
     //채팅룸 만들기
     fun makechatroom(view: View){
-        Toast.makeText(this, "채팅방들어가!", Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, "채팅방들어가!", Toast.LENGTH_LONG).show()
+        if(MY_NICK == data!!.d_postnickname)
+            Toast.makeText(this, "자신이 올린 글은 dip할수 없습니다.", Toast.LENGTH_SHORT).show()
+
 
     }
 

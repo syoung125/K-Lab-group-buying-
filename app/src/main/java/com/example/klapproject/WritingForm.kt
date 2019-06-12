@@ -127,7 +127,6 @@ class WritingForm : AppCompatActivity() {
         if (requestCode == SELECT_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
                 wf_imageView.setImageURI(data!!.data)
-//                t_d.uri = data!!.data
                 t_d.d_url = data!!.data.toString()
             }
         }

@@ -26,7 +26,7 @@ import kotlin.collections.ArrayList
 import kotlin.coroutines.coroutineContext
 
 
-data class Document(var d_postnickname:String?): Serializable {
+data class Document(var d_postnickname:String): Serializable {
     //인자: 게시자
     var d_now:String? = null   //현재날짜
     var d_url:String? = null    //사진
@@ -55,7 +55,7 @@ data class Document(var d_postnickname:String?): Serializable {
             Log.v("Document_checknum", "인원이 모두 찬 채팅방입니다.")
             return
         }
-        d_chatlist.add("currentUser")
+        d_chatlist.add(d_postnickname)
         insert.child("nickname").setValue(d_postnickname)
         insert.child("uri").setValue(d_url)
         insert.child("title").setValue(d_title)
