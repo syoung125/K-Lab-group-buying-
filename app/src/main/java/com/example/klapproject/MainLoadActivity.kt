@@ -16,8 +16,8 @@ import com.google.firebase.database.DataSnapshot
 import kotlinx.android.synthetic.main.activity_chat.*
 import com.google.firebase.database.ChildEventListener
 
-lateinit var MY_ID:String
-lateinit var MY_NICK:String
+lateinit var MY_ID: String
+lateinit var MY_NICK: String
 
 class MainLoadActivity : AppCompatActivity() {
 
@@ -26,13 +26,13 @@ class MainLoadActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_load)
 
 
-
         val handler = Handler()
         handler.postDelayed(Runnable {
-            var intent = Intent(this,LoginActivity::class.java)
+            var intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
 
-            finish() }, 2000)
+            finish()
+        }, 2000)
     }
 
 }
