@@ -44,7 +44,6 @@ class SignUpActivity : Activity() {
                 edit_univ.text.toString(),
                 4.5
             )
-
             rdb.child(ET_su_email.text.toString()).setValue(user)
 
             var insert = FirebaseDatabase.getInstance().getReference("user/$id")

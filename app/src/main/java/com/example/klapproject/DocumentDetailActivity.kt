@@ -7,7 +7,7 @@ import android.widget.Toast
 import com.koushikdutta.ion.Ion
 import kotlinx.android.synthetic.main.activity_document_detail.*
 import android.R.array
-
+import android.view.View
 
 
 class DocumentDetailActivity : AppCompatActivity() {
@@ -19,9 +19,6 @@ class DocumentDetailActivity : AppCompatActivity() {
         data = i.getSerializableExtra("mydata") as Document
         Toast.makeText(this,"${data!!.d_postnickname}",Toast.LENGTH_LONG).show()
         datainit()
-        dip_btn.setOnClickListener {
-            Toast.makeText(this, "채팅방들어가!", Toast.LENGTH_LONG).show()
-        }
     }
 
     fun datainit(){
@@ -43,6 +40,12 @@ class DocumentDetailActivity : AppCompatActivity() {
         //채팅 참여하는 인원정보 알ㄹ려면 array 정보도 받아야함
         tv_totalnum.text = data!!.d_num
         tv_currentnum.text = data!!.d_chatlist.size.toString()
+    }
+
+    //채팅룸 만들기
+    fun makechatroom(view: View){
+        Toast.makeText(this, "채팅방들어가!", Toast.LENGTH_LONG).show()
+
     }
 
 }

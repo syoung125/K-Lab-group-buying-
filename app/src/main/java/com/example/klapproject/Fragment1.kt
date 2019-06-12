@@ -101,6 +101,7 @@ class Fragment1 : Fragment() {
                         td.d_place = d.child(index).child("place").value.toString()
                         td.d_duty = d.child(index).child("duty").value.toString()
                         //채팅 참여하는 인원정보 알ㄹ려면 array 정보도 받아야함
+                        //td.d_chatlist = arrayOf(d.child(index).child("chatUser").value)
 
                         show_list.add(td)
                     }

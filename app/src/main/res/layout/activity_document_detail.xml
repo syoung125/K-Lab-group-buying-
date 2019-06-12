@@ -23,23 +23,23 @@
                      android:layout_height="match_parent"/>
     </LinearLayout>
 
-    <LinearLayout android:layout_width="match_parent" android:layout_height="80dp"
-                  android:paddingVertical="15dp"
-                  android:orientation="horizontal" android:background="#FFFFFF">
-        <ImageView android:src="@drawable/user_profile"
-                   android:layout_marginHorizontal="20dp"
-                   android:layout_width="50dp" android:layout_height="match_parent"/>
-        <TextView android:id="@+id/tv_postnickname"
-                  android:text="올린사람닉네임" android:textSize="25sp" android:gravity="center_vertical"
-                  android:layout_width="wrap_content" android:layout_height="match_parent"/>
-    </LinearLayout>
-
    <ScrollView android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="6">
+
         <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                       android:orientation="vertical"
                       android:gravity="center">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="80dp"
+                          android:paddingVertical="15dp"
+                          android:orientation="horizontal" android:background="#FFFFFF">
+                <ImageView android:src="@drawable/user_profile"
+                           android:layout_marginHorizontal="20dp"
+                           android:layout_width="50dp" android:layout_height="match_parent"/>
+                <TextView android:id="@+id/tv_postnickname"
+                          android:text="올린사람닉네임" android:textSize="25sp" android:gravity="center_vertical"
+                          android:layout_width="wrap_content" android:layout_height="match_parent"/>
+            </LinearLayout>
             <ImageView android:id="@+id/iv_img" android:layout_width="match_parent" android:layout_height="300dp"
                        app:srcCompat="@color/common_google_signin_btn_text_light_default"/>
             <TextView android:id="@+id/tv_ctg" android:text="카테고리" android:textSize="20sp"
@@ -98,7 +98,9 @@
                       android:textSize="30sp"
                       android:layout_height="match_parent"/>
         </LinearLayout>
-        <TextView android:id="@+id/dip_btn" android:text="Dip!" android:textColor="#ffffff"
+        <TextView android:id="@+id/dip_btn"
+                  android:onClick="makechatroom"
+                  android:text="Dip!" android:textColor="#ffffff"
                   android:textSize="30sp" android:gravity="center"
                   android:layout_width="0dp" android:layout_height="wrap_content"
                   android:layout_weight="1"/>

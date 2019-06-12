@@ -28,7 +28,7 @@ class WritingForm : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_writing_form)
-        t_d = Document(MainActivity.u_nickname!!)
+        t_d = Document(MY_NICK)
         init()
     }
 
