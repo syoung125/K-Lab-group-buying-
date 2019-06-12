@@ -12,14 +12,22 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".DocumentDetailActivity"
-                  android:theme="@style/Theme.Design.Light.NoActionBar">
+        <activity
+                android:name=".AddAlarmPopUp"
+                android:theme="@style/add_alarm">
         </activity>
-        <activity android:name=".RecordListActivity"
-                  android:theme="@style/Theme.Design.Light.NoActionBar">
+        <activity
+                android:name=".DocumentDetailActivity"
+                android:theme="@style/Theme.Design.Light.NoActionBar">
         </activity>
-        <activity android:name=".AlarmListActivity"
-                  android:theme="@style/Theme.Design.Light.NoActionBar">
+        <activity
+                android:name=".RecordListActivity"
+                android:theme="@style/Theme.Design.Light.NoActionBar">
+        </activity>
+
+        <activity
+                android:name=".AlarmListActivity"
+                android:theme="@style/Theme.Design.Light.NoActionBar">
         </activity>
         <activity
                 android:name=".CategoryActivity"
