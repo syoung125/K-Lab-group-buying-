@@ -75,8 +75,8 @@ class Fragment4 : Fragment() {
     }
 
     fun setCount(){
-        for(k in 0..2)
-            textView[k].text = data[k].toString() + "명"
+  //      for(k in 0..2)
+  //          textView[k].text = data[k].toString() + "명"
     }
 
 
@@ -87,8 +87,8 @@ class Fragment4 : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val a_list = dataSnapshot.child(MainActivity.u_num.toString()).child("tran_list")
                 var i = 0
+                Log.e("리코드","기록 읽기 시작")
                 for (k in a_list.children) {
-                    Log.e("리코드",k.toString())
                     data2.add(k.child("post_id").value.toString())
                     i++
                     if(i == 2)
@@ -111,6 +111,8 @@ class Fragment4 : Fragment() {
                 for (k in dataSnapshot.children) {
                     Log.e("load2", k.toString())
 
+                    if( data2.isEmpty() )
+                        break;
                     if (k.key.toString() == data2[v]) {
                         info.add(
                             RecordData(
@@ -119,7 +121,7 @@ class Fragment4 : Fragment() {
                             )
                         )
                         v++
-                        if(v == data.size)
+                        if(v == data2.size)
                             break;
                     }
                 }
