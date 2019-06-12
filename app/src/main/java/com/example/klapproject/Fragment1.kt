@@ -71,14 +71,7 @@ class Fragment1 : Fragment() {
                 f1_btn.setImageResource(R.drawable.up_chevron)
             }
         }
-//        if(!show_list.isEmpty()){
-//            Log.v(TAG, "show_list 차있음")
-//
-//
-//        }else{
-//            Log.v(TAG, "show_list 비었음")
-//        }
-//        initData()
+
         return view
     }
     fun initData(mchoice:Int){
@@ -127,7 +120,7 @@ class Fragment1 : Fragment() {
 
         adapter.itemClickListener = object : CategoryAdapter.OnItemClickListener{
             override fun OnItemClick(holder: CategoryAdapter.ViewHolder, view: View, data: Document, position: Int) {
-                Toast.makeText(context, data.d_title, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, data.d_title, Toast.LENGTH_SHORT).show()
                 //data에 해당하는 정보 넘겨줘야함
                 var detailPage = Intent(this@Fragment1.context, DocumentDetailActivity::class.java)
                 detailPage.putExtra("mydata",data)

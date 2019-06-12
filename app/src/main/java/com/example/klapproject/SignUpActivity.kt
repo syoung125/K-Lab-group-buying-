@@ -15,8 +15,6 @@ import com.google.firebase.auth.FirebaseAuth
 class SignUpActivity : Activity() {
 
 
-
-
     var a:Boolean = true
     var b:Boolean = true
     var c:Boolean = true

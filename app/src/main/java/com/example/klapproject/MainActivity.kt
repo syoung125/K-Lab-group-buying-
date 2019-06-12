@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 
+
 class MainActivity : AppCompatActivity()/*,Fragment1.makeIntent*/ {
 
     companion object{

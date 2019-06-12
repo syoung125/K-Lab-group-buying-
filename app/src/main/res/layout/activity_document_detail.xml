@@ -6,20 +6,35 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".DocumentDetailActivity">
-    <LinearLayout android:orientation="horizontal" android:background="#000000"
+    <LinearLayout android:orientation="horizontal"
                   android:gravity="center"
                   android:layout_width="match_parent" android:layout_height="70dp">
-        <TextView android:text="상세 보기" android:textColor="#ffffff"
+        <ImageView android:src="@drawable/backbtn" android:scaleType="fitCenter"
+                   android:layout_weight="1"
+                   android:layout_width="0dp" android:layout_height="40dp"/>
+        <TextView android:text="상세 보기" android:textColor="#444444"
                   android:textSize="25sp" android:gravity="left|center_vertical"
                   android:paddingLeft="20dp"
                   android:layout_width="0dp" android:layout_height="wrap_content"
                   android:layout_weight="4"/>
-        <TextView android:text="메뉴" android:gravity="center"
-                  android:layout_width="0dp" android:layout_weight="1"
-                  android:background="#00BCD4" android:textSize="25sp"
-                  android:layout_height="match_parent"/>
+        <ImageView android:src="@drawable/detail_menu" android:layout_margin="10dp"
+                    android:scaleType="fitCenter"
+                     android:layout_width="0dp" android:layout_weight="1" android:background="#00ffffff"
+                     android:layout_height="match_parent"/>
     </LinearLayout>
-    <ScrollView android:layout_width="match_parent"
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="80dp"
+                  android:paddingVertical="15dp"
+                  android:orientation="horizontal" android:background="#FFFFFF">
+        <ImageView android:src="@drawable/user_profile"
+                   android:layout_marginHorizontal="20dp"
+                   android:layout_width="50dp" android:layout_height="match_parent"/>
+        <TextView android:id="@+id/tv_postnickname"
+                  android:text="올린사람닉네임" android:textSize="25sp" android:gravity="center_vertical"
+                  android:layout_width="wrap_content" android:layout_height="match_parent"/>
+    </LinearLayout>
+
+   <ScrollView android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="6">
         <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"

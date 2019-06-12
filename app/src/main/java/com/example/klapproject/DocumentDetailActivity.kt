@@ -25,6 +25,7 @@ class DocumentDetailActivity : AppCompatActivity() {
     }
 
     fun datainit(){
+        tv_postnickname.text = data!!.d_postnickname
         Ion.with(iv_img).load(data!!.d_storageFileName)
         val ctgarr:Array<String> = resources.getStringArray(R.array.spin_arr)
         tv_ctg.text = ctgarr[data!!.d_category!!.toInt()]
