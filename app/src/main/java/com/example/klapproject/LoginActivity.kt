@@ -61,7 +61,6 @@ class LoginActivity : AppCompatActivity() {
                 }
             })
 
-
         }
 
         signup_button.setOnClickListener {
