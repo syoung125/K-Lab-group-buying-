@@ -12,6 +12,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
+import kotlinx.android.synthetic.main.room_row.*
 
 
 class SignUpActivity : Activity() {
@@ -25,6 +26,7 @@ class SignUpActivity : Activity() {
     var firebaseAuth = FirebaseAuth.getInstance()
     lateinit var rdb: DatabaseReference
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -33,11 +35,10 @@ class SignUpActivity : Activity() {
     }
 
     fun init() {
-        val id = ET_su_email.text.toString()
         rdb = FirebaseDatabase.getInstance().getReference("user")
         btnCreateAccount.setOnClickListener {
             val user = User(
-                id,
+                ET_su_email.text.toString(),
                 ET_su_pw.text.toString(),
                 ET_nickname.text.toString(),
                 edit_place.text.toString(),
@@ -45,9 +46,6 @@ class SignUpActivity : Activity() {
                 4.5
             )
             rdb.child(ET_su_email.text.toString()).setValue(user)
-
-            var insert = FirebaseDatabase.getInstance().getReference("user/$id")
-            insert.child("alarm_list").setValue("")
             finish()
         }
     }
