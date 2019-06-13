@@ -28,6 +28,8 @@ import kotlin.coroutines.coroutineContext
 
 data class Document(var d_postnickname:String): Serializable {
     //인자: 게시자
+    var d_chatkey:String? = null //chatroom key값
+    var d_key:String? = null //db key값
     var d_now:String? = null   //현재날짜
     var d_url:String? = null    //사진
     var d_storageFileName:String? = null //파베 url 다운로드 링크
@@ -49,13 +51,12 @@ data class Document(var d_postnickname:String): Serializable {
         return (d_url == null || d_title == null || d_category == null || d_market == null || d_info == null || d_num == null ||
             d_price == null || d_place == null || d_duty == null)
     }
-    fun regi_firebase(){
+    fun regi_firebase(): String{
         val insert = FirebaseDatabase.getInstance().getReference("post").push()
-        if(d_chatlist.size >= d_num!!.toInt()) {
-            Log.v("Document_checknum", "인원이 모두 찬 채팅방입니다.")
-            return
-        }
-        d_chatlist.add(d_postnickname)
+        val key = insert.key.toString()
+        d_key = key
+        d_chatlist.add(MY_ID)
+        insert.child("chatkey").setValue(d_chatkey)
         insert.child("nickname").setValue(d_postnickname)
         insert.child("uri").setValue(d_url)
         insert.child("title").setValue(d_title)
@@ -71,6 +72,8 @@ data class Document(var d_postnickname:String): Serializable {
         insert.child("time").setValue(d_now)
         insert.child("chatUser").setValue(d_chatlist)
         uploadImageToFirebaseStorage(insert)
+
+        return key
     }
     fun uploadImageToFirebaseStorage(insert:DatabaseReference){
         val TAG:String = "Document_imgupload"

@@ -53,15 +53,36 @@ class WritingForm : AppCompatActivity() {
                 var now = LocalDateTime.now()
                 var timestr = "${now.year}-${now.month}-${now.dayOfMonth}T${now.hour}:${now.minute}:${now.second}"
                 t_d.d_now = timestr
+
+                //채팅방 생성 -> 데이터베이스에 새로운 채팅방 추가
+                val database = FirebaseDatabase.getInstance()
+                val myRef = database.getReference("chat")
+                val newMyRef = myRef.push()
+                val roomKey = newMyRef.key.toString()
+                var member:ArrayList<String> = arrayListOf()
+                member.add(MY_ID)
+                newMyRef.child("member_id").setValue(member)
+
+                t_d.d_chatkey = roomKey
+
                 MainActivity.doc_list.add(t_d)
+
                 //디비에 등록
-                t_d.regi_firebase()
+                val postId = t_d.regi_firebase()
+
+                newMyRef.child("post_id").setValue(postId)
+
 
                 // user에 올린 게시물 추가
                 var user_upload = FirebaseDatabase.getInstance().getReference("user/$MY_ID")
                 var user_upload_list = user_upload.child("upload_list").push()
                 user_upload_list.setValue(t_d.d_title.toString())
 
+
+                Toast.makeText(applicationContext, "게시물을 성공적으로 등록했습니다.", Toast.LENGTH_SHORT).show()
+
+                //현재 activity 종료
+                finish()
                 var gohomeintent = Intent(this, MainActivity::class.java)
                 startActivity(gohomeintent)
             }

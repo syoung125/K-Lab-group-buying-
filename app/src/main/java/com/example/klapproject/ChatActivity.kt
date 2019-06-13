@@ -5,17 +5,11 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_chat.*
 import android.widget.Toast
-import android.content.DialogInterface
-import android.content.Intent
 import android.support.v7.app.AlertDialog
-import android.util.Log
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_chat.userImg
-import kotlinx.android.synthetic.main.room_row.*
-import java.security.Key
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -27,7 +21,6 @@ class ChatActivity : AppCompatActivity() {
     lateinit var dList:Array<String>
     var id:String = ""
     lateinit var memberList:ArrayList<String>
-    lateinit var memberArray:Array<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -154,7 +147,7 @@ class ChatActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "신고ㄱㄱ", Toast.LENGTH_SHORT).show()
             }
         }
-        userImg.setOnClickListener {
+        itemImg.setOnClickListener {
             builder.show()
         }
         editText.setOnClickListener {
