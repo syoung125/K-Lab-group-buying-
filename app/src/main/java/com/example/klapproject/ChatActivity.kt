@@ -7,6 +7,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_chat.*
 import android.widget.Toast
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -16,6 +17,9 @@ import com.koushikdutta.ion.Ion
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import java.nio.file.Files.size
+
+
 
 
 class ChatActivity : AppCompatActivity() {
@@ -24,7 +28,7 @@ class ChatActivity : AppCompatActivity() {
     lateinit var dList:Array<String>
     var id:String = ""
     lateinit var memberList:ArrayList<String>
-    lateinit var rBuilder:AlertDialog.Builder
+    var rBuilder:AlertDialog.Builder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,30 +95,12 @@ class ChatActivity : AppCompatActivity() {
                 }
                 userId.setText(str)
 
-//                rBuilder = AlertDialog.Builder(applicationContext)
-//                val memberArray:Array<String> = arrayOf("")
-//                memberList.toArray(memberArray)
-//                rBuilder.setItems(memberArray){ dialog, pos ->
-////                    val memberId = memberArray[pos]
-////                    val database = FirebaseDatabase.getInstance()
-////                    val myRef = database.getReference("user")
-////                    myRef.addValueEventListener(object : ValueEventListener {
-////                        override fun onCancelled(p0: DatabaseError) {
-////
-////                        }
-////                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-////                            var key:String = ""
-////                            for (i in dataSnapshot.children) { //방 확인
-////                                if(i.child("id").toString() == memberId){
-////                                    key = i.key.toString()
-////                                    break
-////                                }
-////                            }
-////                            val newMyRef = myRef.child(key).child("review").push()
-////                            newMyRef.setValue("reviewContent")
-////                        }
-////                    })
-//                }
+                rBuilder = AlertDialog.Builder(this@ChatActivity)
+                var memberArray = memberList.toArray(arrayOfNulls<String>(memberList.size))
+                rBuilder?.setItems(memberArray){ dialog, pos ->
+                    //빌더에 멤버 리스트 뜨게만 만들어놈
+                }
+
             }
         })
 
@@ -162,8 +148,9 @@ class ChatActivity : AppCompatActivity() {
         }
 
         btnImg3.setOnClickListener { //리뷰
-            //rBuilder.show()
+            rBuilder?.show()
         }
+
         menuBtn.setOnClickListener {
             bottomLinear.visibility = View.VISIBLE
         }
