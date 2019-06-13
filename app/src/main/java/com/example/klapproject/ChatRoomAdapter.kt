@@ -10,6 +10,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.koushikdutta.ion.Ion
 
 class ChatRoomAdapter(context: Context, val resource:Int, var list:ArrayList<ChatRoom>)
     : ArrayAdapter<ChatRoom>(context, resource, list)
@@ -43,18 +45,27 @@ class ChatRoomAdapter(context: Context, val resource:Int, var list:ArrayList<Cha
                 }
             }
         })
-//        val myRef2 = database.getReference("chat").child(p.room_id).child("post_id")
-//        myRef2.addValueEventListener(object : ValueEventListener{
-//            override fun onCancelled(p0: DatabaseError) {
-//
-//            }
-//
-//            override fun onDataChange(p0: DataSnapshot) {
-//                val postid = p0.value.toString()
-//
-//                v!!.findViewById<ImageView>(R.id.itemImg).setImageResource(p.itemImg)
-//            }
-//        })
+        val myRef2 = database.getReference("chat").child(p.room_id).child("post_id")
+        myRef2.addValueEventListener(object : ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                val postid = p0.value.toString()
+                val myRef3 = database.getReference("post").child(postid).child("sFileName")
+                myRef3.addValueEventListener(object : ValueEventListener{
+                    override fun onCancelled(p0: DatabaseError) {
+
+                    }
+
+                    override fun onDataChange(p0: DataSnapshot) {
+                        val storageReference = FirebaseStorage.getInstance().reference
+                        Ion.with(v!!.findViewById<ImageView>(R.id.itemImg)).load(p0.value.toString())
+                    }
+                })
+            }
+        })
         return v
     }
 }

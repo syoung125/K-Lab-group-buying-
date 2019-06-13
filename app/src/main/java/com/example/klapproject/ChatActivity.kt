@@ -1,5 +1,6 @@
 package com.example.klapproject
 
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,6 +11,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.koushikdutta.ion.Ion
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -21,6 +24,7 @@ class ChatActivity : AppCompatActivity() {
     lateinit var dList:Array<String>
     var id:String = ""
     lateinit var memberList:ArrayList<String>
+    lateinit var rBuilder:AlertDialog.Builder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +48,7 @@ class ChatActivity : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference("chat").child(id).child("chat_list")
         val myRef2 = database.getReference("chat").child(id).child("member_id")
+        val myRef3 = database.getReference("chat").child(id).child("post_id")
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
 
@@ -85,25 +90,68 @@ class ChatActivity : AppCompatActivity() {
                         str += memberList[i]
                 }
                 userId.setText(str)
+
+//                rBuilder = AlertDialog.Builder(applicationContext)
+//                val memberArray:Array<String> = arrayOf("")
+//                memberList.toArray(memberArray)
+//                rBuilder.setItems(memberArray){ dialog, pos ->
+////                    val memberId = memberArray[pos]
+////                    val database = FirebaseDatabase.getInstance()
+////                    val myRef = database.getReference("user")
+////                    myRef.addValueEventListener(object : ValueEventListener {
+////                        override fun onCancelled(p0: DatabaseError) {
+////
+////                        }
+////                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+////                            var key:String = ""
+////                            for (i in dataSnapshot.children) { //방 확인
+////                                if(i.child("id").toString() == memberId){
+////                                    key = i.key.toString()
+////                                    break
+////                                }
+////                            }
+////                            val newMyRef = myRef.child(key).child("review").push()
+////                            newMyRef.setValue("reviewContent")
+////                        }
+////                    })
+//                }
             }
         })
 
+        myRef3.addValueEventListener(object:ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
 
-//        userImg.setImageResource(resources.getIdentifier("chat_user", "drawable", packageName))
-//        userId.text = id
-//        itemImg.setImageResource(resources.getIdentifier("pencil", "drawable", packageName))
+            override fun onDataChange(p0: DataSnapshot) {
+               val postid = p0.value.toString()
+                val myRef4 = database.getReference("post").child(postid).child("sFileName")
+                myRef4.addValueEventListener(object:ValueEventListener{
+                    override fun onCancelled(p0: DatabaseError) {
+                        //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
 
+                    override fun onDataChange(p0: DataSnapshot) {
+                        val storageReference = FirebaseStorage.getInstance().reference
+                        Ion.with(itemImg).load(p0.value.toString())
+                    }
+                })
+
+            }
+        })
     }
 
     fun addListener(){
         sendBtn.setOnClickListener {
             bottomLinear.visibility = View.GONE
             val content = editText.text.toString()
-            val time = SimpleDateFormat("HH:mm", Locale.KOREA).format(Date())
-            val database = FirebaseDatabase.getInstance()
-            val myRef = database.getReference("chat").child(id).child("chat_list")
-            val newMyRef = myRef.push()
-            newMyRef.setValue(Chat(resources.getIdentifier("chat_user", "drawable", packageName), MY_ID, content, time, true))
+            if(content.trim() != ""){
+                val time = SimpleDateFormat("HH:mm", Locale.KOREA).format(Date())
+                val database = FirebaseDatabase.getInstance()
+                val myRef = database.getReference("chat").child(id).child("chat_list")
+                val newMyRef = myRef.push()
+                newMyRef.setValue(Chat(resources.getIdentifier("chat_user", "drawable", packageName), MY_ID, content, time, true))
+            }
             editText.setText("")
         }
         btnImg1.setOnClickListener { //거래 확정
@@ -112,31 +160,9 @@ class ChatActivity : AppCompatActivity() {
         btnImg2.setOnClickListener { //거래 완료
 
         }
-        val rBuilder = AlertDialog.Builder(this)
-        val memberArray:Array<String> = arrayOf("")
-        rBuilder.setItems(memberList.toArray(memberArray)){ dialog, pos ->
-            val memberId = memberArray[pos]
-            val database = FirebaseDatabase.getInstance()
-            val myRef = database.getReference("user")
-            myRef.addValueEventListener(object : ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {
 
-                }
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    var key:String = ""
-                    for (i in dataSnapshot.children) { //방 확인
-                        if(i.child("id").toString() == memberId){
-                            key = i.key.toString()
-                            break
-                        }
-                    }
-                    val newMyRef = myRef.child(key).child("review").push()
-                    newMyRef.setValue("reviewContent")
-                }
-            })
-        }
         btnImg3.setOnClickListener { //리뷰
-            rBuilder.show()
+            //rBuilder.show()
         }
         menuBtn.setOnClickListener {
             bottomLinear.visibility = View.VISIBLE
