@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.koushikdutta.ion.Ion
 import kotlinx.android.synthetic.main.activity_document_detail.*
 import android.R.array
+import android.support.v7.app.AlertDialog
 import android.view.View
 
 
@@ -49,6 +50,13 @@ class DocumentDetailActivity : AppCompatActivity() {
             Toast.makeText(this, "자신이 올린 글은 dip할수 없습니다.", Toast.LENGTH_SHORT).show()
 
 
+    }
+
+    fun showDetailLink(view: View){
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage("${data!!.d_market}")
+            val dialog = builder.create()
+            dialog.show()
     }
 
 }

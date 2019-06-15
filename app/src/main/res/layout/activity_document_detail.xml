@@ -51,7 +51,9 @@
                           android:gravity="center_vertical" android:paddingLeft="20dp"
                           android:layout_width="0dp" android:layout_height="50sp" android:layout_weight="4"/>
                 <!--클릭하면 상세 구매처 보임-->
-                <Button android:id="@+id/btn_link" android:text="온라인" android:layout_width="0dp" android:layout_weight="1"
+                <Button android:id="@+id/btn_link"
+                        android:onClick="showDetailLink"
+                        android:text="온라인" android:layout_width="0dp" android:layout_weight="1"
                         android:layout_marginRight="20dp"
                         android:layout_height="match_parent"/>
             </LinearLayout>
