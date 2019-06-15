@@ -84,6 +84,8 @@ class Fragment1 : Fragment() {
                         val index = i.key.toString()
                         Log.v(TAG, i.toString()+", index ${index}")
                         var td: Document = Document("")
+                        td.d_key = index
+                        td.d_chatkey = d.child(index).child("chatkey").value.toString()
                         td.d_postnickname = d.child(index).child("nickname").value.toString()
                         td.d_category = d.child(index).child("category").value.toString()
                         if(mchoice != 0 && td.d_category != (mchoice-1).toString())

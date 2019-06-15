@@ -18,7 +18,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:id="@+id/userImg"
+                android:id="@+id/itemImg"
                 android:layout_weight="1"/>
         <LinearLayout
                 android:layout_weight="4"
@@ -34,12 +34,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" android:id="@+id/userId" android:textSize="30sp"/>
         </LinearLayout>
-        <ImageView
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:id="@+id/itemImg" android:layout_weight="1"/>
     </LinearLayout>
     <ListView
             android:transcriptMode="alwaysScroll"
@@ -88,12 +82,6 @@
                 android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" app:srcCompat="@drawable/chat_btn2" android:id="@+id/btnImg2"
-                android:layout_weight="1"/>
-        <ImageView
-                android:clickable="true"
-                android:layout_margin="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/chat_btn3" android:id="@+id/btnImg3"
                 android:layout_weight="1"/>
     </LinearLayout>
 

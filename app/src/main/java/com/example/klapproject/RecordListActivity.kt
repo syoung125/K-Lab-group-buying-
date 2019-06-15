@@ -23,56 +23,40 @@ class RecordListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record_list)
 
-        load1()
+        transPrint()
     }
 
-    fun load1(){
+    fun transPrint() {
         val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("user")
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val a_list = dataSnapshot.child(MY_ID).child("tran_list")
-                for (k in a_list.children) {
-                    Log.e("리코드",k.toString())
-                    data.add(k.child("post_id").value.toString())
-                }
-                load2(database)
+        val tran_list = database.getReference("user/$MY_ID/tran_list")
+        tran_list.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
             }
-            override fun onCancelled(databaseError: DatabaseError) {
 
-            }
-        })
-    }
-
-    fun load2(database:FirebaseDatabase){
-        val myRef = database.getReference("post")
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                if (data.size != 0) {
-                    var v = 0
-                    for (k in dataSnapshot.children) {
-                        Log.e("load2", k.toString())
-
-                        if (k.key.toString() == data[v]) {
-                            info.add(
-                                RecordData(
-                                    k.child("title").value.toString(),
-                                    k.child("category").value.toString().toInt()
-                                )
-                            )
-                            v++
-                            if (v == data.size)
-                                break;
+            override fun onDataChange(p0: DataSnapshot) {
+                for(trans in p0.children) {
+                    val trans = trans.value.toString() // 자신의 거래 내역 불러옴
+                    val p_db = database.getReference("post")
+                    p_db.addListenerForSingleValueEvent(object : ValueEventListener{
+                        override fun onCancelled(p1: DatabaseError) {
                         }
-                    }
-                    initAdapter()
-                }
-                else
-                    Toast.makeText(applicationContext,"완수한 거래내역이 없어요",Toast.LENGTH_LONG).show()
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
 
+                        override fun onDataChange(p1: DataSnapshot) {
+                            for(post_id in p1.children) { // 모든 게시물 불러옴
+                                if(trans == post_id.key) { // 모든 게시물 안에서 내 거래 내역을 찾음
+                                    println(post_id.child("title").value)
+                                    info.add(
+                                        RecordData(
+                                            post_id.child("title").value.toString(),
+                                            post_id.child("time").value.toString()
+                                        )
+                                    )
+                                }
+                            }
+                            initAdapter()
+                        }
+                    })
+                }
             }
         })
     }

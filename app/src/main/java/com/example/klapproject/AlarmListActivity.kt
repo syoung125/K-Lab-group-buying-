@@ -1,5 +1,6 @@
 package com.example.klapproject
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.util.Log
 import android.widget.AdapterView
+import android.widget.Toast
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -21,30 +23,31 @@ class AlarmListActivity : AppCompatActivity() {
     var adapter:AlarmAdapter?=null
     val database = FirebaseDatabase.getInstance()
     var data = mutableListOf<String>()
-    var USER_NAME:Int = -1
+    var keySet = mutableListOf<String>()
+    val POP_UP = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alarm_list)
-        USER_NAME = intent.getIntExtra("user",-1)
-        Log.e("알람리스트","$USER_NAME")
+
+        initAdapter()
+        initBtn()
+//        Log.e("알람리스트","어댑터까지 붙임")
         load()
     }
 
     fun load(){
-        val myRef = database.getReference("user")
+        val myRef = database.getReference("user/$MY_ID/alarm_list")
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val a_list = dataSnapshot.child(USER_NAME.toString()).child("alarm_list")
-                Log.e("알람리스트","$dataSnapshot")
-                val c = dataSnapshot.child(USER_NAME.toString())
-                Log.e("알람리스트","$c")
-                Log.e("알람리스트","$a_list")
-                for (k in a_list.children) {
+                Log.e("알람리스트12","$dataSnapshot")
+                data.clear()
+                for (k in dataSnapshot.children) {
+                    Log.e("알람리스트","$k")
+                    keySet.add(k.key!!)
                     data.add(k.child("item_name").value.toString())
                 }
-                initAdapter()
-                Log.e("알람리스트","어댑터까지 붙임")
+                adapter!!.notifyDataSetChanged()
             }
             override fun onCancelled(databaseError: DatabaseError) {
 
@@ -80,9 +83,12 @@ class AlarmListActivity : AppCompatActivity() {
                 return true
             }
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val database = FirebaseDatabase.getInstance()
+                    .getReference("user/$MY_ID/alarm_list")
+                    .child(keySet[viewHolder.adapterPosition]).removeValue()
+
+                keySet.removeAt(viewHolder.adapterPosition)
                 adapter!!.removeItem(viewHolder.adapterPosition)
-
-
                 // 어댑터에 정의된 삭제함수
             }
         }
@@ -91,9 +97,29 @@ class AlarmListActivity : AppCompatActivity() {
         itemTouchHelper.attachToRecyclerView(alarm_list)
         // 해당 세팅이 적용되길 원하는 리사이클러 뷰에 붙여줌
     }
+
     fun initBtn(){
         add_alarm.setOnClickListener {
-
+            val i = Intent(applicationContext,AddAlarmPopUp::class.java)
+            startActivityForResult(i,POP_UP)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == POP_UP)
+            if(resultCode == RESULT_OK){
+                var str = data!!.getStringExtra("result")
+                load(str)
+            }
+    }
+
+    fun load(str:String){
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("user/$MY_ID/alarm_list")
+            .push().setValue(AlarmData(str))
+            .addOnCompleteListener {
+                Toast.makeText(applicationContext,"알람 등록 성공",Toast.LENGTH_SHORT).show()
+            }
     }
 }

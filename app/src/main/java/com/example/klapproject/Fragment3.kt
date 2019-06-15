@@ -64,7 +64,7 @@ class Fragment3 : Fragment() {
                             memberList.add(id)
                         }
                     }
-                    if(flag){ //room에 나 포함
+                    if(flag && memberList.isNotEmpty()){ //room에 나 포함
                         chatList.add(0, ChatRoom(room_id, memberList))
                     }
                 }
