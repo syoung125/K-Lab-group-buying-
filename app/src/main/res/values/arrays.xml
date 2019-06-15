@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="review_prompt">좋았던 점을 골라주세요</string>
+    <string-array name="review_arr">
+        <item>시간약속을 잘 지켜요</item>
+        <item>친절하고 매너가 좋아요</item>
+        <item>상품 상태가 설명한 것과 같아요</item>
+        <item>응답이 빨라요</item>
+        <item>상품 설명이 자세해요</item>
+        <item>제가 있는 곳까지 와서 거래했어요</item>
+    </string-array>
+</resources>

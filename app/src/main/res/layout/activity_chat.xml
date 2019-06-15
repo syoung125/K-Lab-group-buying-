@@ -83,12 +83,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" app:srcCompat="@drawable/chat_btn2" android:id="@+id/btnImg2"
                 android:layout_weight="1"/>
-        <ImageView
-                android:clickable="true"
-                android:layout_margin="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/chat_btn3" android:id="@+id/btnImg3"
-                android:layout_weight="1"/>
     </LinearLayout>
 
 </LinearLayout>
