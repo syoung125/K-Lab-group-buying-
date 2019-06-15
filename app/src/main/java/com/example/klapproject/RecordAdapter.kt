@@ -44,12 +44,7 @@ class RecordAdapter (val items:MutableList<RecordData>)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.r_title.text = items.get(position).r_title
-        when(items.get(position).r_category){
-            0->holder.r_cate.text ="a"
-            1->holder.r_cate.text ="b"
-            2->holder.r_cate.text ="c"
-            3->holder.r_cate.text ="d"
-        }
+        holder.r_title.text = items.get(position).r_date
+        holder.r_cate.text =items.get(position).r_title
     }
 }

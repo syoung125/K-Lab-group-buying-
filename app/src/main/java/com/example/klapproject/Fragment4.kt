@@ -47,7 +47,6 @@ class Fragment4 : Fragment() {
 
         reviewPrint()
         transPrint()
-        // load()
 
         v.findViewById<Button>(R.id.product_notice).setOnClickListener {
             var i = Intent(activity!!.applicationContext, AlarmListActivity::class.java)
@@ -127,100 +126,20 @@ class Fragment4 : Fragment() {
                             for(post_id in p1.children) { // 모든 게시물 불러옴
                                 if(trans == post_id.key) { // 모든 게시물 안에서 내 거래 내역을 찾음
                                     println(post_id.child("title").value)
-                                    // adapter에 넣는 작업 해주시면 될 것 같아요!!
-
-
-
-
-
+                                    info.add(
+                                        RecordData(
+                                            post_id.child("title").value.toString(),
+                                            post_id.child("time").value.toString()
+                                        )
+                                    )
+                                    if(info.size == 2) break;
                                 }
                             }
+                            initAdapter()
                         }
 
                     })
                 }
-            }
-
-        })
-    }
-
-    fun load() {
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("user")
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val a_list = dataSnapshot.child(MY_ID).child("review")
-                for (k in a_list.children) {
-                    val value = k.child("content").value.toString()
-                    data.set(value.toInt(), data[value.toInt()] + 1)
-                }
-                setCount()
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-
-            }
-        })
-        load1()
-    }
-
-    fun setCount() {
-        for (k in 0..2)
-            count_textView[k].setText(data[k].toString() + "명")
-    }
-
-
-    fun load1() {
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("user")
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val a_list = dataSnapshot.child(MY_ID).child("tran_list")
-                var i = 0
-                Log.e("리코드", "기록 읽기 시작")
-                for (k in a_list.children) {
-                    data2.add(k.child("post_id").value.toString())
-                    i++
-                    if (i == 2)
-                        break
-                }
-                load2(database)
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-
-            }
-        })
-    }
-
-    fun load2(database: FirebaseDatabase) {
-        val myRef = database.getReference("post")
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                var v = 0
-                for (k in dataSnapshot.children) {
-                    Log.e("load2", k.toString())
-
-                    if (data2.isEmpty())
-                        break;
-                    if (k.key.toString() == data2[v]) {
-                        info.add(
-                            RecordData(
-                                k.child("title").value.toString(),
-                                k.child("category").value.toString().toInt()
-                            )
-                        )
-                        v++
-                        if (v == data2.size)
-                            break;
-                    }
-                }
-                initAdapter()
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-
             }
         })
     }

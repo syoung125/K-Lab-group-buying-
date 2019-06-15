@@ -33,28 +33,30 @@ class LoginActivity : AppCompatActivity() {
             myRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     var check = 0
-                    for (i in dataSnapshot.children) {
-                        val index = i.key.toString()
-                        val id = dataSnapshot.child(index).child("id").value.toString()
-                        val pw = dataSnapshot.child(index).child("password").value.toString()
+                    if (MY_ID == null) {
+                        for (i in dataSnapshot.children) {
+                            val index = i.key.toString()
+                            val id = dataSnapshot.child(index).child("id").value.toString()
+                            val pw = dataSnapshot.child(index).child("password").value.toString()
 
-                        if (id == editText_id.text.toString() && pw == editText_pw.text.toString()) {
-                            MY_ID = id
-                            MY_NICK = dataSnapshot.child(index).child("name").value.toString()
-                            flag = 1
-                            val i = Intent()
-                            i.putExtra("user", check)
+                            if (id == editText_id.text.toString() && pw == editText_pw.text.toString()) {
+                                MY_ID = id
+                                MY_NICK = dataSnapshot.child(index).child("name").value.toString()
+                                flag = 1
+                                val i = Intent()
+                                i.putExtra("user", check)
 //                            i.putExtra("userid", id)
-                            i.putExtra("nick", dataSnapshot.child(index).child("name").value.toString())
-                            setResult(Activity.RESULT_OK,i)
+                                i.putExtra("nick", dataSnapshot.child(index).child("name").value.toString())
+                                setResult(Activity.RESULT_OK, i)
 //                            finish()
-                            var mainPage = Intent(applicationContext, MainActivity::class.java)
-                            startActivityForResult(mainPage, 1)
+                                var mainPage = Intent(applicationContext, MainActivity::class.java)
+                                startActivityForResult(mainPage, 1)
+                            }
+                            check++
                         }
-                        check++
+                        if (flag == 0)
+                            Toast.makeText(applicationContext, "아이디 또는 비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
                     }
-                    if (flag == 0)
-                        Toast.makeText(applicationContext, "아이디 또는 비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
                 }
                 override fun onCancelled(databaseError: DatabaseError) {
 

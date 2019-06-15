@@ -26,22 +26,6 @@ class MainActivity : AppCompatActivity()/*,Fragment1.makeIntent*/ {
         init()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-//        if(requestCode == 1){
-//          if(resultCode == Activity.RESULT_OK) {
-//              u_num = data?.getIntExtra("user", -1)
-//              u_nickname = data?.getStringExtra("nick")
-////              currentUser = data?.getStringExtra("userid")
-////              Toast.makeText(applicationContext, "currentUser: ${currentUser}", Toast.LENGTH_SHORT).show()
-//              Log.e("메인", "$u_num\t$u_nickname")
-//          }
-//            else
-//              finish()
-//        }
-    }
-
     fun init(){
         tabLayer = findViewById(R.id.layout_tab)
         tabLayer?.addTab(tabLayer!!.newTab().setText("홈"))

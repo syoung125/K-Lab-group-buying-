@@ -23,6 +23,7 @@ class AlarmListActivity : AppCompatActivity() {
     var adapter:AlarmAdapter?=null
     val database = FirebaseDatabase.getInstance()
     var data = mutableListOf<String>()
+    var keySet = mutableListOf<String>()
     val POP_UP = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +44,7 @@ class AlarmListActivity : AppCompatActivity() {
                 data.clear()
                 for (k in dataSnapshot.children) {
                     Log.e("알람리스트","$k")
+                    keySet.add(k.key!!)
                     data.add(k.child("item_name").value.toString())
                 }
                 adapter!!.notifyDataSetChanged()
@@ -81,9 +83,12 @@ class AlarmListActivity : AppCompatActivity() {
                 return true
             }
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val database = FirebaseDatabase.getInstance()
+                    .getReference("user/$MY_ID/alarm_list")
+                    .child(keySet[viewHolder.adapterPosition]).removeValue()
+
+                keySet.removeAt(viewHolder.adapterPosition)
                 adapter!!.removeItem(viewHolder.adapterPosition)
-
-
                 // 어댑터에 정의된 삭제함수
             }
         }
@@ -95,13 +100,13 @@ class AlarmListActivity : AppCompatActivity() {
 
     fun initBtn(){
         add_alarm.setOnClickListener {
-            val i = Intent(this,AddAlarmPopUp::class.java)
+            val i = Intent(applicationContext,AddAlarmPopUp::class.java)
             startActivityForResult(i,POP_UP)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+//        super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == POP_UP)
             if(resultCode == RESULT_OK){
                 var str = data!!.getStringExtra("result")

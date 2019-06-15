@@ -147,7 +147,7 @@ class ChatActivity : AppCompatActivity() {
                 newMyRef.setValue(
                     Chat(
                         resources.getIdentifier("chat_user", "drawable", packageName),
-                        MY_ID,
+                        MY_ID!!,
                         content,
                         time,
                         true

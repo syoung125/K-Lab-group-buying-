@@ -55,7 +55,7 @@ data class Document(var d_postnickname:String): Serializable {
         val insert = FirebaseDatabase.getInstance().getReference("post").push()
         val key = insert.key.toString()
         d_key = key
-        d_chatlist.add(MY_ID)
+        d_chatlist.add(MY_ID!!)
         insert.child("chatkey").setValue(d_chatkey)
         insert.child("nickname").setValue(d_postnickname)
         insert.child("uri").setValue(d_url)

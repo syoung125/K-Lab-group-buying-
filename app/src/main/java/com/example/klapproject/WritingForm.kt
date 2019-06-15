@@ -30,7 +30,7 @@ class WritingForm : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_writing_form)
-        t_d = Document(MY_NICK)
+        t_d = Document(MY_NICK!!)
         init()
     }
 
@@ -60,7 +60,7 @@ class WritingForm : AppCompatActivity() {
                 val newMyRef = myRef.push()
                 val roomKey = newMyRef.key.toString()
                 var member:ArrayList<String> = arrayListOf()
-                member.add(MY_ID)
+                member.add(MY_ID!!)
                 newMyRef.child("member_id").setValue(member)
 
                 t_d.d_chatkey = roomKey
