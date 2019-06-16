@@ -9,31 +9,31 @@
         tools:context=".ChatActivity">
 
     <LinearLayout
-            android:layout_weight="1"
             android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content">
         <ImageView
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
+                android:layout_margin="10dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background = "#B6B6B6"
+                android:id="@+id/itemImg"/>
+        <TextView
+                android:text="seoyoung"
+                android:paddingHorizontal="10dp"
+                android:gravity="center_vertical"
                 android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:id="@+id/itemImg"
-                android:layout_weight="1"/>
-        <LinearLayout
-                android:layout_weight="4"
-                android:layout_width="0dp" android:layout_height="match_parent"
-                android:orientation="vertical">
-            <TextView
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="0dp"
-                    android:text="seoyoung"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:id="@+id/userId" android:textSize="30sp"/>
-        </LinearLayout>
+                android:id="@+id/userId" android:textSize="30sp"/>
+        <ImageView
+                android:layout_marginRight="20dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background = "#00ffffff"
+                android:src="@drawable/warnbtn"
+                android:id="@+id/warnbtn"/>
     </LinearLayout>
     <ListView
             android:transcriptMode="alwaysScroll"
@@ -42,47 +42,60 @@
             android:layout_height="0dp" android:id="@+id/listView" android:dividerHeight="0px"
             android:divider="#ffffff"/>
     <LinearLayout
-            android:layout_weight="0.8"
             android:orientation="horizontal"
+            android:gravity="center|center_vertical"
+            android:paddingVertical="7dp"
+            android:background="#9EC4EBFF"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
-
+            android:layout_height="70dp">
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" app:srcCompat="@drawable/menu_btn"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:id="@+id/menuBtn" android:layout_weight="12"/>
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="7dp"
+                android:src="@drawable/more_btn"
+                android:id="@+id/menuBtn"/>
         <EditText
-                android:layout_width="357dp"
+                android:layout_width="280dp"
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText" android:layout_weight="12"/>
+                android:background="@drawable/round_border"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:layout_marginVertical="4dp"
+                android:layout_marginHorizontal="5dp"
+                android:theme="@style/EditTheme"
+                android:id="@+id/editText"/>
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" app:srcCompat="@drawable/send_btn" android:id="@+id/sendBtn"
-                android:layout_weight="12"/>
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/send_btn"
+                android:id="@+id/sendBtn"/>
     </LinearLayout>
     <LinearLayout
             android:id="@+id/bottomLinear"
             android:visibility="gone"
-            android:layout_weight="1.5"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:gravity="center_vertical"
+            android:background="#9EC4EBFF"
+            android:paddingHorizontal="10dp"
+            android:layout_height="130dp">
         <ImageView
                 android:clickable="true"
-                android:layout_margin="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/chat_btn1" android:id="@+id/btnImg1"
-                android:layout_weight="1"/>
+                android:layout_marginHorizontal="25dp"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                app:srcCompat="@drawable/chat_btn1"
+                android:id="@+id/btnImg1"/>
         <ImageView
                 android:clickable="true"
-                android:layout_margin="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/chat_btn2" android:id="@+id/btnImg2"
-                android:layout_weight="1"/>
+                android:layout_marginHorizontal="25dp"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                app:srcCompat="@drawable/chat_btn2"
+                android:id="@+id/btnImg2"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -8,6 +8,7 @@
         android:orientation="vertical"
         tools:context=".SignUpActivity"
         android:focusable="true"
+        android:background="#ffffff"
         android:focusableInTouchMode="true"
         android:paddingHorizontal="20dp" android:paddingVertical="50dp">
     <TextView

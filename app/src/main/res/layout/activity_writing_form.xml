@@ -14,11 +14,14 @@
         <LinearLayout
                 android:orientation="horizontal" android:layout_marginVertical="10dp"
                 android:layout_width="match_parent" android:layout_height="wrap_content">
+            <ImageView android:layout_width="30dp" android:layout_height="30dp"
+                       android:layout_gravity="center_vertical"
+                       android:layout_marginRight="10dp"
+            android:src="@drawable/writebtn"/>
             <TextView
                     android:text="글쓰기" android:textSize="30sp" android:layout_marginRight="180dp"
-                    android:textColor="#62d4f7" android:layout_gravity="center_vertical"
+                    android:textColor="#63CFFF" android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-
         </LinearLayout>
         <TextView
                 android:text="사진 삽입" android:textSize="20sp" android:layout_marginVertical="5dp"

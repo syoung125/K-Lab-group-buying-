@@ -14,65 +14,57 @@
         <LinearLayout android:layout_width="match_parent"
                       android:orientation="vertical"
                       android:layout_height="match_parent">
-            <!--마이페이지 텍스트와 알림버튼-->
-            <LinearLayout android:layout_width="match_parent"
-                          android:layout_marginTop="20dp"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-                <TextView android:layout_width="0dp"
-                          android:layout_weight="4"
-                          android:text="마이페이지"
-                          android:textColor="#ffc900"
-                          android:gravity="left|center"
-                          android:layout_marginLeft="20dp"
-                          android:textSize="25sp"
-                          android:layout_height="match_parent"/>
-                <Button android:layout_width="0dp"
-                        android:text="알림"
-                        android:id="@+id/product_notice"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"/>
-            </LinearLayout>
-            <!-- 프로필 사진과 사용자 닉네임, 거래횟수-->
+            <!-- 프로필 사진과 사용자 닉네임, 거래횟수, 알림버튼-->
             <LinearLayout android:layout_width="match_parent"
                           android:orientation="horizontal"
                           android:layout_marginTop="10dp"
-                          android:layout_height="wrap_content">
-                <ImageView android:layout_width="0dp"
-                           android:layout_marginLeft="40dp"
-                           android:layout_weight="1"
-                           android:src="@mipmap/ic_launcher"
-                           android:id="@+id/profile_img"
-                           android:layout_height="match_parent"/>
+                          android:gravity="center_vertical"
+                          android:layout_height="100dp">
+                <ImageView android:layout_width="60dp"
+                           android:layout_height="60dp"
+                           android:layout_marginLeft="30dp"
+                           android:src="@drawable/user_profile"
+                           android:id="@+id/profile_img"/>
                 <!--사용자 닉네임, 거래횟수(등급)-->
                 <LinearLayout android:layout_width="0dp"
-                              android:layout_weight="5"
+                              android:layout_weight="1"
                               android:layout_height="match_parent"
+                              android:paddingLeft="15dp"
+                              android:gravity="center_vertical"
                               android:orientation="vertical">
                     <TextView android:layout_width="match_parent"
                               android:text="사용자 닉네임"
-                              android:gravity="left|center"
-                              android:paddingLeft="10dp"
                               android:id="@+id/user_name"
-                              android:layout_weight="1"
-                              android:layout_height="0dp"
+                              android:layout_height="wrap_content"
+                              android:layout_marginBottom="7dp"
                               android:textStyle="bold"
                               android:textSize="18sp"/>
-
+                    <TextView android:text="거래횟수: 12번"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"/>
                 </LinearLayout>
+                <ImageButton android:layout_marginRight="15dp"
+                             android:layout_width="50dp"
+                             android:layout_height="50dp"
+                             android:scaleType="fitCenter"
+                             android:background="#00ffffff"
+                             android:src="@drawable/bell"
+                             android:id="@+id/product_notice"/>
             </LinearLayout>
             <!--리뷰보기 텍스트와 더보기 버튼-->
             <LinearLayout android:layout_width="match_parent"
+                          android:background="#DFF3FF"
                           android:layout_marginTop="20dp"
-                          android:layout_height="wrap_content"
+                          android:layout_marginHorizontal="10dp"
+                          android:layout_height="50dp"
+                          android:gravity="center_vertical"
                           android:orientation="horizontal">
                 <TextView android:layout_width="0dp"
-                          android:layout_weight="4"
+                          android:layout_weight="1"
                           android:text="리뷰보기"
-                          android:textColor="#ffc900"
-                          android:gravity="left|center"
-                          android:layout_marginLeft="20dp"
+                          android:textColor="#686868"
+                          android:gravity="center_vertical"
+                          android:paddingLeft="20dp"
                           android:textSize="25sp"
                           android:layout_height="match_parent"/>
 
@@ -80,8 +72,7 @@
             <!--리뷰 내용과 리뷰 수-->
             <LinearLayout android:layout_width="match_parent"
                           android:orientation="vertical"
-                          android:layout_marginTop="10dp"
-                          android:paddingLeft="40dp"
+                          android:padding="20dp"
                           android:layout_height="wrap_content">
                 <LinearLayout android:layout_width="match_parent"
                               android:orientation="horizontal"
@@ -89,11 +80,13 @@
                     <TextView android:layout_width="0dp"
                               android:layout_weight="2"
                               android:text="아직 리뷰가 존재하지 않아요"
+                              android:textSize="20sp"
                               android:id="@+id/review1"
                               android:layout_height="match_parent"/>
                     <TextView android:layout_width="0dp"
                               android:layout_weight="1"
                               android:text=""
+                              android:textSize="20sp"
                               android:textStyle="bold"
                               android:id="@+id/review1_count"
                               android:layout_height="match_parent"/>
@@ -104,12 +97,14 @@
                     <TextView android:layout_width="0dp"
                               android:layout_weight="2"
                               android:text=""
+                              android:textSize="20sp"
                               android:id="@+id/review2"
                               android:layout_height="match_parent"/>
                     <TextView android:layout_width="0dp"
                               android:layout_weight="1"
                               android:text=""
                               android:textStyle="bold"
+                              android:textSize="20sp"
                               android:id="@+id/review2_count"
                               android:layout_height="match_parent"/>
                 </LinearLayout>
@@ -119,11 +114,13 @@
                     <TextView android:layout_width="0dp"
                               android:layout_weight="2"
                               android:text=""
+                              android:textSize="20sp"
                               android:id="@+id/review3"
                               android:layout_height="match_parent"/>
                     <TextView android:layout_width="0dp"
                               android:layout_weight="1"
                               android:text=""
+                              android:textSize="20sp"
                               android:textStyle="bold"
                               android:id="@+id/review3_count"
                               android:layout_height="match_parent"/>
@@ -131,39 +128,39 @@
             </LinearLayout>
             <!--이전 거래 목록 텍스트와 공개/비공개 버튼-->
             <LinearLayout android:layout_width="match_parent"
-                          android:layout_marginTop="10dp"
-                          android:layout_height="wrap_content"
+                          android:background="#DFF3FF"
+                          android:gravity="center_vertical"
+                          android:layout_margin="10dp"
+                          android:layout_height="50dp"
                           android:orientation="horizontal">
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_marginTop="10dp"
-                              android:layout_height="wrap_content"
-                              android:orientation="horizontal">
                     <TextView android:layout_width="0dp"
-                              android:layout_weight="3"
-                              android:textColor="#ffc900"
-                              android:text="이전 거래 목록"
-                              android:gravity="left|center"
-                              android:layout_marginLeft="20dp"
+                              android:layout_weight="1"
+                              android:text="이전 게시글 목록"
+                              android:textColor="#686868"
+                              android:gravity="center_vertical"
+                              android:paddingLeft="20dp"
                               android:textSize="25sp"
                               android:layout_height="match_parent"/>
-                    <Button android:layout_width="0dp"
-                            android:text="더보기"
-                            android:id="@+id/record_more_btn"
-                            android:layout_marginRight="20dp"
-                            android:layout_weight="1"
-                            android:layout_height="match_parent"/>
-                    <ToggleButton android:layout_width="0dp"
-                                  android:layout_marginRight="20dp"
-                                  android:layout_weight="1"
-                                  android:id="@+id/private_btn"
+                    <ImageButton android:layout_width="26dp"
+                                 android:layout_height="26dp"
+                                 android:src="@drawable/more_btn"
+                                 android:scaleType="fitCenter"
+                                 android:background="#00ffffff"
+                                 android:id="@+id/record_more_btn"/>
+                    <ToggleButton android:layout_width="70dp"
                                   android:layout_height="match_parent"
+                                  android:layout_marginHorizontal="15dp"
+                                  android:layout_marginVertical="9dp"
+                                  android:id="@+id/private_btn"
+                                  android:background="@drawable/round_border"
                                   android:textOff="비공개"
                                   android:textOn="공개"/>
-                </LinearLayout>
             </LinearLayout>
- <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
- android:id="@+id/pre_record"></android.support.v7.widget.RecyclerView>
+             <android.support.v7.widget.RecyclerView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:padding="20dp"
+                     android:id="@+id/pre_record"/>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

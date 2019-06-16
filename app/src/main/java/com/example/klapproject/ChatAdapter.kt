@@ -28,7 +28,7 @@ class ChatAdapter (context: Context, val resource:Int, var list:ArrayList<Chat>)
         else{ //상대방
             v!!.findViewById<LinearLayout>(R.id.myLayout).visibility = View.GONE
             v!!.findViewById<LinearLayout>(R.id.yourLayout).visibility = View.VISIBLE
-            v!!.findViewById<ImageView>(R.id.yourImg).setImageResource(p.userImg)
+           // v!!.findViewById<ImageView>(R.id.yourImg).setImageResource(p.userImg)
             v!!.findViewById<TextView>(R.id.yourId).text = p.userId
             v!!.findViewById<TextView>(R.id.yourContent).text = p.content
             v!!.findViewById<TextView>(R.id.yourTime).text = p.time

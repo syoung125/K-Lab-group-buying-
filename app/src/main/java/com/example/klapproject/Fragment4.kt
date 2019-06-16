@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.database.DataSnapshot
@@ -48,12 +48,12 @@ class Fragment4 : Fragment() {
         reviewPrint()
         transPrint()
 
-        v.findViewById<Button>(R.id.product_notice).setOnClickListener {
+        v.findViewById<ImageButton>(R.id.product_notice).setOnClickListener {
             var i = Intent(activity!!.applicationContext, AlarmListActivity::class.java)
             //           i.putExtra("user",MainActivity.u_num)
             startActivity(i)
         }
-        v.findViewById<Button>(R.id.record_more_btn).setOnClickListener {
+        v.findViewById<ImageButton>(R.id.record_more_btn).setOnClickListener {
             val i = Intent(activity!!.applicationContext, RecordListActivity::class.java)
             //           i.putExtra("user",MainActivity.u_num)
             startActivity(i)

@@ -28,10 +28,10 @@ class MainActivity : AppCompatActivity()/*,Fragment1.makeIntent*/ {
 
     fun init(){
         tabLayer = findViewById(R.id.layout_tab)
-        tabLayer?.addTab(tabLayer!!.newTab().setText("홈"))
-        tabLayer?.addTab(tabLayer!!.newTab().setText("글쓰기"))
-        tabLayer?.addTab(tabLayer!!.newTab().setText("채팅"))
-        tabLayer?.addTab(tabLayer!!.newTab().setText("마이 페이지"))
+//        tabLayer?.addTab(tabLayer!!.newTab().setIcon(R.drawable.homebtn))
+//        tabLayer?.addTab(tabLayer!!.newTab().setText("글쓰기"))
+//        tabLayer?.addTab(tabLayer!!.newTab().setText("채팅"))
+//        tabLayer?.addTab(tabLayer!!.newTab().setText("마이 페이지"))
         // 탭 4개 추가
 
         val adapter = MyAdapter(supportFragmentManager, tabLayer!!.tabCount)

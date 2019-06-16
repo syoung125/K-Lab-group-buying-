@@ -5,12 +5,16 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#ffffff"
         tools:context=".Fragment1"
         android:orientation="vertical">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="70dp"
-                      android:orientation="horizontal" android:padding="15dp">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="70dp"
+                  android:orientation="horizontal" android:padding="10dp">
             <EditText
                     android:hint="지금 필요한 물건을 검색하세요."
+                    android:theme="@style/EditTheme"
                     android:layout_width="0dp" android:layout_height="match_parent"
                       android:layout_weight="5"
                       android:padding="3dp"
@@ -19,8 +23,11 @@
                          android:layout_weight="1" android:background="#00ffffff"
                          android:id="@+id/category_search" android:src="@android:drawable/ic_search_category_default"/>
     </LinearLayout>
-    <GridLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:padding="18dp" android:layout_gravity="center" android:id="@+id/f1_ctg"
+    <GridLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="18dp" android:layout_gravity="center" android:id="@+id/f1_ctg"
                 android:rowCount="2" android:columnCount="4">
         <ImageButton android:src="@drawable/menu_img0" android:paddingTop="12dp"
                      android:id="@+id/imgButton0" style="@style/menu_style"/>
@@ -33,10 +40,12 @@
         <ImageButton android:src="@drawable/menu_img7" android:id="@+id/imgButton7" style="@style/menu_style"/>
     </GridLayout>
     <ImageButton  android:id="@+id/f1_btn" android:scaleType="centerInside"
+                  android:backgroundTint="#ffffff"
                  android:src="@drawable/up_chevron" android:background="@android:drawable/screen_background_light_transparent"
             android:layout_width="match_parent" android:layout_height="30dp"/>
     <android.support.v7.widget.RecyclerView
-            android:layout_margin="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="15dp"
                 android:id="@+id/category_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
