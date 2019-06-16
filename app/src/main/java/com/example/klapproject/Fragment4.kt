@@ -123,6 +123,7 @@ class Fragment4 : Fragment() {
                         }
 
                         override fun onDataChange(p1: DataSnapshot) {
+                            info.clear()
                             for(post_id in p1.children) { // 모든 게시물 불러옴
                                 if(trans == post_id.key) { // 모든 게시물 안에서 내 거래 내역을 찾음
                                     println(post_id.child("title").value)
