@@ -4,7 +4,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.koushikdutta.ion.Ion
+import kotlinx.android.synthetic.main.activity_document_detail.*
 
 class RecordAdapter (val items:MutableList<RecordData>)
     : RecyclerView.Adapter<RecordAdapter.ViewHolder>() {
@@ -17,9 +20,11 @@ class RecordAdapter (val items:MutableList<RecordData>)
         // 여기서 사용할 멤버를 구성
         var r_title: TextView
         var r_cate:TextView
+        var r_img: ImageView
         init{ //init block을 통한 초기화
             r_title = itemView.findViewById(R.id.r_title)
             r_cate = itemView.findViewById(R.id.r_cate)
+            r_img = itemView.findViewById(R.id.iv_recordimg)
             // 받아온 화면에 존재하는 객체들을 찾아서 저장
         }
     }
@@ -46,5 +51,6 @@ class RecordAdapter (val items:MutableList<RecordData>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.r_title.text = items.get(position).r_date
         holder.r_cate.text =items.get(position).r_title
+        Ion.with(holder.r_img).load(items.get(position).r_img)
     }
 }

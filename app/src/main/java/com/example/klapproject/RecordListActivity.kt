@@ -48,7 +48,8 @@ class RecordListActivity : AppCompatActivity() {
                                     info.add(
                                         RecordData(
                                             post_id.child("title").value.toString(),
-                                            post_id.child("time").value.toString()
+                                            post_id.child("time").value.toString(),
+                                            post_id.child("sFileName").value.toString()
                                         )
                                     )
                                 }
