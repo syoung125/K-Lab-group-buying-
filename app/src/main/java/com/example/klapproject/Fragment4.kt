@@ -31,9 +31,9 @@ class Fragment4 : Fragment() {
     var data2 = mutableListOf<String>()
     var info = mutableListOf<RecordData>()
     lateinit var adapter: RecordAdapter
-
+    lateinit var v:View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val v = inflater.inflate(R.layout.fragment_fragment4, container, false)
+        v = inflater.inflate(R.layout.fragment_fragment4, container, false)
 
         review_textView.add(v.findViewById(R.id.review1))
         review_textView.add(v.findViewById(R.id.review2))
@@ -116,6 +116,9 @@ class Fragment4 : Fragment() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 for(trans in p0.children) {
+                    info.clear()
+
+                    v.t_count.text = "거래횟수 : " + p0.childrenCount.toString()+" 번"
                     val trans = trans.value.toString() // 자신의 거래 내역 불러옴
                     val p_db = database.getReference("post")
                     p_db.addListenerForSingleValueEvent(object : ValueEventListener{
@@ -123,7 +126,6 @@ class Fragment4 : Fragment() {
                         }
 
                         override fun onDataChange(p1: DataSnapshot) {
-                            info.clear()
                             for(post_id in p1.children) { // 모든 게시물 불러옴
                                 if(trans == post_id.key) { // 모든 게시물 안에서 내 거래 내역을 찾음
                                     println(post_id.child("title").value)
